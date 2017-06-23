@@ -1,10 +1,10 @@
 <img src="https://cloud.githubusercontent.com/assets/9234/19400090/8c20c53c-9222-11e6-937c-02bce55e5301.png" alt="City of Boston" width="150" />
 
-The source code for ordering registry certificates online.
+The source code for getting a dog license.
 
-[![Build Status](https://travis-ci.org/CityOfBoston/registry-certs.svg?branch=develop)](https://travis-ci.org/CityOfBoston/registry-certs)
-[![codecov](https://codecov.io/gh/CityOfBoston/registry-certs/branch/develop/graph/badge.svg)](https://codecov.io/gh/CityOfBoston/registry-certs)
-[![Greenkeeper badge](https://badges.greenkeeper.io/CityOfBoston/registry-certs.svg)](https://greenkeeper.io/)
+[![Build Status](https://travis-ci.org/CityOfBoston/dog-licenses.svg?branch=develop)](https://travis-ci.org/CityOfBoston/dog-licenses)
+[![codecov](https://codecov.io/gh/CityOfBoston/dog-licenses/branch/develop/graph/badge.svg)](https://codecov.io/gh/CityOfBoston/dog-licenses)
+[![Greenkeeper badge](https://badges.greenkeeper.io/CityOfBoston/dog-licenses.svg)](https://greenkeeper.io/)
 
 ## Developers
 
