@@ -37,9 +37,107 @@ exports[`rendering shows empty search box 1`] = `
       <h1
         className="sh-title"
       >
-        Death Certificates
+        Search for dog id
       </h1>
     </div>
+    <form
+      acceptCharset="UTF-8"
+      action="/death"
+      className="sf sf--md"
+      method="get"
+      onSubmit={[Function]}
+    >
+      <input
+        name="utf8"
+        type="hidden"
+        value="✓"
+      />
+      <div
+        className="txt"
+      >
+        <label
+          className="txt-l"
+          htmlFor="text"
+        >
+          Owner First Name
+        </label>
+        <input
+          className="txt-f"
+          id="text"
+          name="firstName"
+          onChange={[Function]}
+          placeholder="Emily"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="txt"
+      >
+        <label
+          className="txt-l"
+          htmlFor="text"
+        >
+          Owner Last Name
+        </label>
+        <input
+          className="txt-f"
+          id="text"
+          name="lastName"
+          onChange={[Function]}
+          placeholder="Elizabeth"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="txt"
+      >
+        <label
+          className="txt-l"
+          htmlFor="text"
+        >
+          Dog name
+        </label>
+        <input
+          className="txt-f"
+          id="text"
+          name="dogName"
+          onChange={[Function]}
+          placeholder="Clifford"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="txt"
+      >
+        <label
+          className="txt-l"
+          htmlFor="text"
+        >
+          Year licensed
+        </label>
+        <input
+          className="txt-f"
+          id="text"
+          name="year"
+          onChange={[Function]}
+          placeholder="2016"
+          value=""
+        />
+      </div>
+      <div
+        className="m-v400 m-h200"
+      >
+        <button
+          className="btn"
+          type="submit"
+        >
+          Search for id
+        </button>
+      </div>
+    </form>
     <form
       acceptCharset="UTF-8"
       action="/death"
@@ -115,9 +213,107 @@ exports[`rendering shows search results 1`] = `
       <h1
         className="sh-title"
       >
-        Death Certificates
+        Search for dog id
       </h1>
     </div>
+    <form
+      acceptCharset="UTF-8"
+      action="/death"
+      className="sf sf--md"
+      method="get"
+      onSubmit={[Function]}
+    >
+      <input
+        name="utf8"
+        type="hidden"
+        value="✓"
+      />
+      <div
+        className="txt"
+      >
+        <label
+          className="txt-l"
+          htmlFor="text"
+        >
+          Owner First Name
+        </label>
+        <input
+          className="txt-f"
+          id="text"
+          name="firstName"
+          onChange={[Function]}
+          placeholder="Emily"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="txt"
+      >
+        <label
+          className="txt-l"
+          htmlFor="text"
+        >
+          Owner Last Name
+        </label>
+        <input
+          className="txt-f"
+          id="text"
+          name="lastName"
+          onChange={[Function]}
+          placeholder="Elizabeth"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="txt"
+      >
+        <label
+          className="txt-l"
+          htmlFor="text"
+        >
+          Dog name
+        </label>
+        <input
+          className="txt-f"
+          id="text"
+          name="dogName"
+          onChange={[Function]}
+          placeholder="Clifford"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="txt"
+      >
+        <label
+          className="txt-l"
+          htmlFor="text"
+        >
+          Year licensed
+        </label>
+        <input
+          className="txt-f"
+          id="text"
+          name="year"
+          onChange={[Function]}
+          placeholder="2016"
+          value=""
+        />
+      </div>
+      <div
+        className="m-v400 m-h200"
+      >
+        <button
+          className="btn"
+          type="submit"
+        >
+          Search for id
+        </button>
+      </div>
+    </form>
     <form
       acceptCharset="UTF-8"
       action="/death"
@@ -178,13 +374,13 @@ exports[`rendering shows search results 1`] = `
     </div>
     <a
       className="p-a300 br br-t100 b--w result"
-      data-jsx={1723197323}
+      data-jsx={636813094}
       href="/death/certificate/000002"
       onClick={[Function]}
     >
       <div
         className="t--sans"
-        data-jsx={1723197323}
+        data-jsx={636813094}
         style={
           Object {
             "fontStyle": "normal",
@@ -198,7 +394,7 @@ exports[`rendering shows search results 1`] = `
         Banner
       </div>
       <div
-        data-jsx={1723197323}
+        data-jsx={636813094}
       >
         Died: 
         3/4/2016
@@ -208,13 +404,13 @@ exports[`rendering shows search results 1`] = `
     </a>
     <a
       className="p-a300 br br-t100 b--w result"
-      data-jsx={1723197323}
+      data-jsx={636813094}
       href="/death/certificate/000001"
       onClick={[Function]}
     >
       <div
         className="t--sans"
-        data-jsx={1723197323}
+        data-jsx={636813094}
         style={
           Object {
             "fontStyle": "normal",
@@ -228,7 +424,7 @@ exports[`rendering shows search results 1`] = `
         Howlett
       </div>
       <div
-        data-jsx={1723197323}
+        data-jsx={636813094}
       >
         Died: 
         4/15/2014
@@ -236,20 +432,20 @@ exports[`rendering shows search results 1`] = `
         44 yrs. 2 mos. 10 dys
       </div>
       <div
-        data-jsx={1723197323}
+        data-jsx={636813094}
       >
         Certificate Pending
       </div>
     </a>
     <a
       className="p-a300 br br-t100 b--w result"
-      data-jsx={1723197323}
+      data-jsx={636813094}
       href="/death/certificate/000003"
       onClick={[Function]}
     >
       <div
         className="t--sans"
-        data-jsx={1723197323}
+        data-jsx={636813094}
         style={
           Object {
             "fontStyle": "normal",
@@ -263,7 +459,7 @@ exports[`rendering shows search results 1`] = `
         Joe
       </div>
       <div
-        data-jsx={1723197323}
+        data-jsx={636813094}
       >
         Died: 
         2004

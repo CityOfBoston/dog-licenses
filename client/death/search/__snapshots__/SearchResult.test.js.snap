@@ -3,13 +3,13 @@
 exports[`rendering renders a certificate without a death date 1`] = `
 <a
   className="p-a300 br br-t100 b--w result"
-  data-jsx={1723197323}
+  data-jsx={636813094}
   href="/death/certificate/000003"
   onClick={[Function]}
 >
   <div
     className="t--sans"
-    data-jsx={1723197323}
+    data-jsx={636813094}
     style={
       Object {
         "fontStyle": "normal",
@@ -23,7 +23,7 @@ exports[`rendering renders a certificate without a death date 1`] = `
     Joe
   </div>
   <div
-    data-jsx={1723197323}
+    data-jsx={636813094}
   >
     Died: 
     2004
@@ -36,13 +36,13 @@ exports[`rendering renders a certificate without a death date 1`] = `
 exports[`rendering renders a pending certificate 1`] = `
 <a
   className="p-a300 br br-t100 b--w result"
-  data-jsx={1723197323}
+  data-jsx={636813094}
   href="/death/certificate/000001"
   onClick={[Function]}
 >
   <div
     className="t--sans"
-    data-jsx={1723197323}
+    data-jsx={636813094}
     style={
       Object {
         "fontStyle": "normal",
@@ -56,7 +56,7 @@ exports[`rendering renders a pending certificate 1`] = `
     Howlett
   </div>
   <div
-    data-jsx={1723197323}
+    data-jsx={636813094}
   >
     Died: 
     4/15/2014
@@ -64,7 +64,7 @@ exports[`rendering renders a pending certificate 1`] = `
     44 yrs. 2 mos. 10 dys
   </div>
   <div
-    data-jsx={1723197323}
+    data-jsx={636813094}
   >
     Certificate Pending
   </div>
@@ -74,13 +74,13 @@ exports[`rendering renders a pending certificate 1`] = `
 exports[`rendering renders a typical certificate 1`] = `
 <a
   className="p-a300 br br-t100 b--w result"
-  data-jsx={1723197323}
+  data-jsx={636813094}
   href="/death/certificate/000002"
   onClick={[Function]}
 >
   <div
     className="t--sans"
-    data-jsx={1723197323}
+    data-jsx={636813094}
     style={
       Object {
         "fontStyle": "normal",
@@ -94,7 +94,7 @@ exports[`rendering renders a typical certificate 1`] = `
     Banner
   </div>
   <div
-    data-jsx={1723197323}
+    data-jsx={636813094}
   >
     Died: 
     3/4/2016

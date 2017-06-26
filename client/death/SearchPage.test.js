@@ -1,8 +1,6 @@
 // @flow
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { shallow } from 'enzyme';
-import Router from 'next/router';
 
 import type { DeathCertificate, DeathCertificateSearchResults } from '../types';
 import Cart from '../store/Cart';
@@ -72,21 +70,5 @@ describe('rendering', () => {
       )).toJSON(),
     ).toMatchSnapshot();
     expect(deathCertificatesDao.search).toHaveBeenCalledWith('Monkey Joe', 1);
-  });
-});
-
-describe('searching', () => {
-  it('redirects to search for a query', () => {
-    const cart = new Cart();
-    const wrapper = shallow(<SearchPage cart={cart} query="" results={null} />);
-
-    wrapper
-      .find('input[name="q"]')
-      .simulate('change', { target: { value: 'Monkey Joe' } });
-    wrapper
-      .find('form[action="/death"]')
-      .simulate('submit', { preventDefault: jest.fn() });
-
-    expect(Router.push).toHaveBeenCalledWith('/death?q=Monkey%20Joe');
   });
 });

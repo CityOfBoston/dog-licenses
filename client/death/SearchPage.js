@@ -26,6 +26,10 @@ export type Props = {
 
 type State = {
   query: string,
+  firstName: string,
+  lastName: string,
+  dogName: string,
+  year: string,
 };
 
 export default class IndexPage extends React.Component {

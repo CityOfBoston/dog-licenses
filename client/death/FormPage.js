@@ -26,6 +26,24 @@ export type Props = {
 
 type State = {
   query: string,
+  firstName: string,
+  lastName: string,
+  phone: string,
+  email: string,
+  address: string,
+  neighbor: string,
+  zip: string,
+  dogName: string,
+  ageYr: string,
+  ageMo: string,
+  color1: string,
+  color2: string,
+  breed1: string,
+  breed2: string,
+  sex: string,
+  rabiesIssued: string,
+  rabiesExpire: string,
+  comments: string,
 };
 
 export default class IndexPage extends React.Component {
@@ -102,7 +120,7 @@ export default class IndexPage extends React.Component {
 
   render() {
     const { results, cart } = this.props;
-    const { query } = this.state;
+    //const { query } = this.state;
 
     return (
       <div>
@@ -238,6 +256,7 @@ export default class IndexPage extends React.Component {
 
             <div className="txt">
               <label htmlFor="text" className="txt-l">Dog Age (Years)</label>
+              <style textAlign="right" />
               <input
                 id="text"
                 name="zip"
