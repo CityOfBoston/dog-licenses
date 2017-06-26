@@ -57,14 +57,27 @@ export default class IndexPage extends React.Component {
     super(props);
 
     const { query } = props;
+    //const { firstname } = props;
 
     this.state = {
       query,
+      //firstname,
+      firstName: '',
+      lastName: '',
+      dogName: '',
+      year: '',
     };
   }
 
   handleQueryChange = (ev: SyntheticInputEvent) => {
     this.setState({ query: ev.target.value });
+  };
+
+  handleInputChange = (ev: SyntheticInputEvent) => {
+    const target = ev.target;
+    const value = target.value;
+    const name = target.name;
+    this.setState({ [name]: value });
   };
 
   handleSubmit = (ev: SyntheticInputEvent) => {
@@ -81,15 +94,79 @@ export default class IndexPage extends React.Component {
     return (
       <div>
         <Head>
-          <title>Boston.gov — Death Certificates</title>
+          <title>Boston.gov — Dog Certificates</title>
         </Head>
 
         <Nav cart={cart} link="checkout" />
 
         <div className="p-a300">
           <div className="sh sh--b0">
-            <h1 className="sh-title">Death Certificates</h1>
+            <h1 className="sh-title">Search for dog id</h1>
           </div>
+
+          <form
+            className="sf sf--md"
+            acceptCharset="UTF-8"
+            method="get"
+            action="/death"
+            onSubmit={this.handleSubmit}>
+            <input name="utf8" type="hidden" value="✓" />
+
+            <div className="txt">
+              <label htmlFor="text" className="txt-l">Owner First Name</label>
+              <input
+                id="text"
+                name="firstName"
+                type="text"
+                value={this.state.firstName}
+                onChange={this.handleInputChange}
+                placeholder="Emily"
+                className="txt-f"
+              />
+            </div>
+
+            <div className="txt">
+              <label htmlFor="text" className="txt-l">Owner Last Name</label>
+              <input
+                id="text"
+                type="text"
+                name="lastName"
+                value={this.state.lastName}
+                onChange={this.handleInputChange}
+                placeholder="Elizabeth"
+                className="txt-f"
+              />
+            </div>
+
+            <div className="txt">
+              <label htmlFor="text" className="txt-l">Dog name</label>
+              <input
+                id="text"
+                type="text"
+                name="dogName"
+                value={this.state.dogName}
+                onChange={this.handleInputChange}
+                placeholder="Clifford"
+                className="txt-f"
+              />
+            </div>
+
+            <div className="txt">
+              <label htmlFor="text" className="txt-l">Year licensed</label>
+              <input
+                id="text"
+                name="year"
+                value={this.state.year}
+                onChange={this.handleInputChange}
+                placeholder="2016"
+                className="txt-f"
+              />
+            </div>
+            <div className="m-v400 m-h200">
+              <button className="btn" type="submit">Search for id</button>
+            </div>
+
+          </form>
 
           <form
             className="sf sf--md"
