@@ -2,20 +2,19 @@
 
 import React from 'react';
 import Head from 'next/head';
-import Router from 'next/router';
-import type { Context } from 'next';
+//import Router from 'next/router';
+//import type { Context } from 'next';
 
-import type { ClientDependencies } from '../page';
+//import type { ClientDependencies } from '../page';
 
 import type Cart from '../store/Cart';
 import Nav from '../common/Nav';
-import Pagination from '../common/Pagination';
+//import Pagination from '../common/Pagination';
 import type { DeathCertificateSearchResults } from '../types';
 
 import SearchResult from './search/SearchResult';
 
 export type InitialProps = {|
-  query: string,
   results: ?DeathCertificateSearchResults,
 |};
 
@@ -25,7 +24,6 @@ export type Props = {
 };
 
 type State = {
-  query: string,
   firstName: string,
   lastName: string,
   phone: string,
@@ -34,12 +32,9 @@ type State = {
   neighbor: string,
   zip: string,
   dogName: string,
-  ageYr: string,
-  ageMo: string,
-  color1: string,
-  color2: string,
-  breed1: string,
-  breed2: string,
+  dogAge: string,
+  color: string,
+  breed: string,
   sex: string,
   rabiesIssued: string,
   rabiesExpire: string,
@@ -50,35 +45,21 @@ export default class IndexPage extends React.Component {
   props: Props;
   state: State;
 
-  static async getInitialProps(
-    ctx: Context<*>,
-    { deathCertificatesDao }: ClientDependencies,
-  ): Promise<InitialProps> {
-    const { query } = ctx;
+  // static async getInitialProps(
+  //   ctx: Context<*>,
+  //   { deathCertificatesDao }: ClientDependencies,
+  // ): Promise<InitialProps> {
+  //   let results = null;
 
-    let results = null;
-
-    if (query.q) {
-      results = await deathCertificatesDao.search(
-        query.q,
-        parseInt(query.page, 10) || 1,
-      );
-    }
-
-    return {
-      query: query.q || '',
-      results,
-    };
-  }
+  //   return {
+  //     results,
+  //   };
+  // }
 
   constructor(props: Props) {
     super(props);
 
-    const { query } = props;
-    //const { firstname } = props;
-
     this.state = {
-      query,
       firstName: '',
       lastName: '',
       phone: '',
@@ -87,22 +68,15 @@ export default class IndexPage extends React.Component {
       neighbor: '',
       zip: '',
       dogName: '',
-      ageYr: '',
-      ageMo: '',
-      color1: '',
-      color2: '',
-      breed1: '',
-      breed2: '',
+      dogAge: '',
+      color: '',
+      breed: '',
       sex: '',
       rabiesIssued: '',
       rabiesExpire: '',
       comments: '',
     };
   }
-
-  handleQueryChange = (ev: SyntheticInputEvent) => {
-    this.setState({ query: ev.target.value });
-  };
 
   handleInputChange = (ev: SyntheticInputEvent) => {
     const target = ev.target;
@@ -112,16 +86,12 @@ export default class IndexPage extends React.Component {
   };
 
   handleSubmit = (ev: SyntheticInputEvent) => {
-    const { query } = this.state;
-
     ev.preventDefault();
-    Router.push(`/death?q=${encodeURIComponent(query)}`);
+    //Router.push(`/death?q=${encodeURIComponent(query)}`);
   };
 
   render() {
-    const { results, cart } = this.props;
-    //const { query } = this.state;
-
+    const { /*results,*/ cart } = this.props;
     return (
       <div>
         <Head>
@@ -146,7 +116,7 @@ export default class IndexPage extends React.Component {
             <div className="txt">
               <label htmlFor="text" className="txt-l">Owner First Name</label>
               <input
-                id="text"
+                id="lookup-firstname"
                 name="firstName"
                 type="text"
                 value={this.state.firstName}
@@ -159,7 +129,7 @@ export default class IndexPage extends React.Component {
             <div className="txt">
               <label htmlFor="text" className="txt-l">Owner Last Name</label>
               <input
-                id="text"
+                id="lookup-lastName"
                 type="text"
                 name="lastName"
                 value={this.state.lastName}
@@ -185,7 +155,7 @@ export default class IndexPage extends React.Component {
             <div className="txt">
               <label htmlFor="text" className="txt-l">Email</label>
               <input
-                id="text"
+                id="lookup-email"
                 name="email"
                 value={this.state.email}
                 onChange={this.handleInputChange}
@@ -197,7 +167,7 @@ export default class IndexPage extends React.Component {
             <div className="txt">
               <label htmlFor="text" className="txt-l">Address</label>
               <input
-                id="text"
+                id="lookup-address"
                 name="address"
                 value={this.state.address}
                 onChange={this.handleInputChange}
@@ -207,9 +177,14 @@ export default class IndexPage extends React.Component {
             </div>
 
             <div className="sel">
-              <label htmlFor="language" className="sel-l">Neighborhood</label>
+              <label htmlFor="neighborhood" className="sel-l">
+                Neighborhood
+              </label>
               <div className="sel-c">
-                <select name="language" id="language" className="sel-f">
+                <select
+                  name="neighborhood"
+                  id="lookup-neighborhood"
+                  className="sel-f">
                   <option value="Allston">Allston</option>
                   <option value="Back Bay">Back Bay</option>
                   <option value="Beacon Hill">Beacon Hill</option>
@@ -233,7 +208,7 @@ export default class IndexPage extends React.Component {
             <div className="txt">
               <label htmlFor="text" className="txt-l">Zip Code</label>
               <input
-                id="text"
+                id="lookup-zip"
                 name="zip"
                 value={this.state.zip}
                 onChange={this.handleInputChange}
@@ -245,7 +220,7 @@ export default class IndexPage extends React.Component {
             <div className="txt">
               <label htmlFor="text" className="txt-l">Dog Name</label>
               <input
-                id="text"
+                id="lookup-dogName"
                 name="dogName"
                 value={this.state.dogName}
                 onChange={this.handleInputChange}
@@ -258,9 +233,9 @@ export default class IndexPage extends React.Component {
               <label htmlFor="text" className="txt-l">Dog Age (Years)</label>
               <style textAlign="right" />
               <input
-                id="text"
-                name="zip"
-                value={this.state.zip}
+                id="lookup-dogAge"
+                name="dogAge"
+                value={this.state.dogAge}
                 onChange={this.handleInputChange}
                 placeholder="2, 0.5, 17..."
                 className="txt-f"
@@ -268,11 +243,11 @@ export default class IndexPage extends React.Component {
             </div>
 
             <div className="sel">
-              <label htmlFor="language" className="sel-l">
+              <label htmlFor="breed" className="sel-l">
                 Dog Breed
               </label>
               <div className="sel-c">
-                <select name="language" id="language" className="sel-f">
+                <select name="breed" id="lookup-breed" className="sel-f">
                   <option value="Alaskan Malamute">Alaskan Malamute</option>
                   <option value="Alaskan Husky">Alaskan Husky</option>
                   <option value="Pit Bull Terrier">Pit Bull Terrier</option>
@@ -294,11 +269,11 @@ export default class IndexPage extends React.Component {
             </div>
 
             <div className="sel">
-              <label htmlFor="language" className="sel-l">
+              <label htmlFor="color" className="sel-l">
                 Primary Dog Color
               </label>
               <div className="sel-c">
-                <select name="language" id="language" className="sel-f">
+                <select name="color" id="lookup-color" className="sel-f">
                   <option value="Black">Black</option>
                   <option value="Brown">Brown</option>
                   <option value="Tan">Tan</option>
@@ -310,11 +285,11 @@ export default class IndexPage extends React.Component {
             </div>
 
             <div className="sel">
-              <label htmlFor="language" className="sel-l">
+              <label htmlFor="sex" className="sel-l">
                 Dog Sex
               </label>
               <div className="sel-c">
-                <select name="language" id="language" className="sel-f">
+                <select name="sex" id="lookup-sex" className="sel-f">
                   <option value="Female">Female</option>
                   <option value="Male">Male</option>
                 </select>
@@ -322,9 +297,35 @@ export default class IndexPage extends React.Component {
             </div>
 
             <div className="txt">
+              <label htmlFor="text" className="txt-l">Rabies Issue Date</label>
+              <input
+                id="lookup-rabiesIssue"
+                name="rabiesIssued"
+                value={this.state.rabiesIssued}
+                onChange={this.handleInputChange}
+                placeholder="02/18/2014"
+                className="txt-f"
+              />
+            </div>
+
+            <div className="txt">
+              <label htmlFor="text" className="txt-l">
+                Rabies Expiration Date
+              </label>
+              <input
+                id="lookup-rabiesExpire"
+                name="rabiesExpire"
+                value={this.state.rabiesExpire}
+                onChange={this.handleInputChange}
+                placeholder="03/31/2017"
+                className="txt-f"
+              />
+            </div>
+
+            <div className="txt">
               <label htmlFor="text" className="txt-l">Comments</label>
               <textarea
-                id="text"
+                id="lookup-comments"
                 placeholder="My dog is a mutt, with breeds..."
                 className="txt-f"
                 rows="10"
@@ -338,7 +339,7 @@ export default class IndexPage extends React.Component {
           </form>
         </div>
 
-        {results && this.renderResults(results)}
+        {/*results && this.renderResults(results)*/}
         <div />
 
       </div>
@@ -347,8 +348,6 @@ export default class IndexPage extends React.Component {
 
   renderResults(results: DeathCertificateSearchResults) {
     // we want the query that was searched for
-    const { query } = this.props;
-
     const start = 1 + (results.page - 1) * results.pageSize;
     const end = Math.min(start + results.pageSize - 1, results.resultCount);
 
@@ -357,7 +356,7 @@ export default class IndexPage extends React.Component {
         <div className="p-a300 b--w">
           <div className="t--sans tt-u" style={{ fontSize: 12 }}>
             Showing {start}–{end} of {results.resultCount.toLocaleString()}{' '}
-            results for “{query}”
+            results for “”
           </div>
         </div>
 
@@ -365,8 +364,10 @@ export default class IndexPage extends React.Component {
           <SearchResult certificate={certificate} key={certificate.id} />,
         )}
 
-        {results.resultCount > results.results.length &&
-          this.renderPagination(results)}
+        {results.resultCount >
+          results.results
+            .length /*&&
+          this.renderPagination(results)*/}
 
         <div className="p-a300">
           Not finding what you’re looking for? Try refining your search or{' '}
@@ -380,10 +381,8 @@ export default class IndexPage extends React.Component {
     );
   }
 
-  renderPagination({ page, pageCount }: DeathCertificateSearchResults) {
-    const { query } = this.props;
-    const makeHref = (p: number) => `/death?q=${query}&page=${p}`;
-
-    return <Pagination page={page} pageCount={pageCount} hrefFunc={makeHref} />;
-  }
+  // renderPagination({ page, pageCount }: DeathCertificateSearchResults) {
+  //   const makeHref = (p: number) => `/death`;
+  //   return <Pagination page={page} pageCount={pageCount} hrefFunc={makeHref} />;
+  // }
 }
