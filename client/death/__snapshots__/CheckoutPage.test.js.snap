@@ -44,12 +44,12 @@ exports[`rendering renders a hydrated cart 1`] = `
   <div>
     <div
       className="p-a300 result"
-      data-jsx={2870391737}
+      data-jsx={1389666004}
     >
       <input
         aria-label="Quantity"
         className="br br-a150 quantity-box"
-        data-jsx={2870391737}
+        data-jsx={1389666004}
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -57,17 +57,17 @@ exports[`rendering renders a hydrated cart 1`] = `
       />
       <div
         className="certificate-info"
-        data-jsx={2870391737}
+        data-jsx={1389666004}
       >
         <div
-          data-jsx={2870391737}
+          data-jsx={1389666004}
         >
           Bruce
            
           Banner
         </div>
         <div
-          data-jsx={2870391737}
+          data-jsx={1389666004}
           style={
             Object {
               "fontStyle": "italic",
@@ -77,7 +77,7 @@ exports[`rendering renders a hydrated cart 1`] = `
           3/4/2016
           <span
             className="id-label"
-            data-jsx={2870391737}
+            data-jsx={1389666004}
           >
             ID:
           </span>
@@ -86,7 +86,7 @@ exports[`rendering renders a hydrated cart 1`] = `
         </div>
       </div>
       <button
-        data-jsx={2870391737}
+        data-jsx={1389666004}
         onClick={[Function]}
         type="button"
       >
@@ -95,12 +95,12 @@ exports[`rendering renders a hydrated cart 1`] = `
     </div>
     <div
       className="p-a300 result"
-      data-jsx={2870391737}
+      data-jsx={1389666004}
     >
       <input
         aria-label="Quantity"
         className="br br-a150 quantity-box"
-        data-jsx={2870391737}
+        data-jsx={1389666004}
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -108,17 +108,17 @@ exports[`rendering renders a hydrated cart 1`] = `
       />
       <div
         className="certificate-info"
-        data-jsx={2870391737}
+        data-jsx={1389666004}
       >
         <div
-          data-jsx={2870391737}
+          data-jsx={1389666004}
         >
           Logan
            
           Howlett
         </div>
         <div
-          data-jsx={2870391737}
+          data-jsx={1389666004}
           style={
             Object {
               "fontStyle": "italic",
@@ -128,7 +128,7 @@ exports[`rendering renders a hydrated cart 1`] = `
           4/15/2014
           <span
             className="id-label"
-            data-jsx={2870391737}
+            data-jsx={1389666004}
           >
             ID:
           </span>
@@ -137,7 +137,7 @@ exports[`rendering renders a hydrated cart 1`] = `
         </div>
       </div>
       <button
-        data-jsx={2870391737}
+        data-jsx={1389666004}
         onClick={[Function]}
         type="button"
       >

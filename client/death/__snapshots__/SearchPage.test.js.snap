@@ -374,13 +374,13 @@ exports[`rendering shows search results 1`] = `
     </div>
     <a
       className="p-a300 br br-t100 b--w result"
-      data-jsx={636813094}
+      data-jsx={1723197323}
       href="/death/certificate/000002"
       onClick={[Function]}
     >
       <div
         className="t--sans"
-        data-jsx={636813094}
+        data-jsx={1723197323}
         style={
           Object {
             "fontStyle": "normal",
@@ -394,7 +394,7 @@ exports[`rendering shows search results 1`] = `
         Banner
       </div>
       <div
-        data-jsx={636813094}
+        data-jsx={1723197323}
       >
         Died: 
         3/4/2016
@@ -404,13 +404,13 @@ exports[`rendering shows search results 1`] = `
     </a>
     <a
       className="p-a300 br br-t100 b--w result"
-      data-jsx={636813094}
+      data-jsx={1723197323}
       href="/death/certificate/000001"
       onClick={[Function]}
     >
       <div
         className="t--sans"
-        data-jsx={636813094}
+        data-jsx={1723197323}
         style={
           Object {
             "fontStyle": "normal",
@@ -424,7 +424,7 @@ exports[`rendering shows search results 1`] = `
         Howlett
       </div>
       <div
-        data-jsx={636813094}
+        data-jsx={1723197323}
       >
         Died: 
         4/15/2014
@@ -432,20 +432,20 @@ exports[`rendering shows search results 1`] = `
         44 yrs. 2 mos. 10 dys
       </div>
       <div
-        data-jsx={636813094}
+        data-jsx={1723197323}
       >
         Certificate Pending
       </div>
     </a>
     <a
       className="p-a300 br br-t100 b--w result"
-      data-jsx={636813094}
+      data-jsx={1723197323}
       href="/death/certificate/000003"
       onClick={[Function]}
     >
       <div
         className="t--sans"
-        data-jsx={636813094}
+        data-jsx={1723197323}
         style={
           Object {
             "fontStyle": "normal",
@@ -459,7 +459,7 @@ exports[`rendering shows search results 1`] = `
         Joe
       </div>
       <div
-        data-jsx={636813094}
+        data-jsx={1723197323}
       >
         Died: 
         2004
