@@ -29,7 +29,7 @@ type State = {
   phone: string,
   email: string,
   address: string,
-  neighbor: string,
+  neighborhood: string,
   zip: string,
   dogName: string,
   dogAge: string,
@@ -65,7 +65,7 @@ export default class IndexPage extends React.Component {
       phone: '',
       email: '',
       address: '',
-      neighbor: '',
+      neighborhood: '',
       zip: '',
       dogName: '',
       dogAge: '',
@@ -114,7 +114,9 @@ export default class IndexPage extends React.Component {
             <input name="utf8" type="hidden" value="✓" />
 
             <div className="txt">
-              <label htmlFor="text" className="txt-l">Owner First Name</label>
+              <label htmlFor="lookup-firstName" className="txt-l">
+                Owner First Name
+              </label>
               <input
                 id="lookup-firstname"
                 name="firstName"
@@ -127,7 +129,9 @@ export default class IndexPage extends React.Component {
             </div>
 
             <div className="txt">
-              <label htmlFor="text" className="txt-l">Owner Last Name</label>
+              <label htmlFor="lookup-lastName" className="txt-l">
+                Owner Last Name
+              </label>
               <input
                 id="lookup-lastName"
                 type="text"
@@ -140,9 +144,11 @@ export default class IndexPage extends React.Component {
             </div>
 
             <div className="txt">
-              <label htmlFor="text" className="txt-l">Phone Number</label>
+              <label htmlFor="lookup-phone" className="txt-l">
+                Phone Number
+              </label>
               <input
-                id="text"
+                id="lookup-phone"
                 type="text"
                 name="phone"
                 value={this.state.phone}
@@ -153,7 +159,7 @@ export default class IndexPage extends React.Component {
             </div>
 
             <div className="txt">
-              <label htmlFor="text" className="txt-l">Email</label>
+              <label htmlFor="lookup-email" className="txt-l">Email</label>
               <input
                 id="lookup-email"
                 name="email"
@@ -165,7 +171,7 @@ export default class IndexPage extends React.Component {
             </div>
 
             <div className="txt">
-              <label htmlFor="text" className="txt-l">Address</label>
+              <label htmlFor="lookup-address" className="txt-l">Address</label>
               <input
                 id="lookup-address"
                 name="address"
@@ -177,12 +183,13 @@ export default class IndexPage extends React.Component {
             </div>
 
             <div className="sel">
-              <label htmlFor="neighborhood" className="sel-l">
+              <label htmlFor="lookup-neighborhood" className="sel-l">
                 Neighborhood
               </label>
               <div className="sel-c">
                 <select
                   name="neighborhood"
+                  value={this.state.neighborhood}
                   id="lookup-neighborhood"
                   className="sel-f">
                   <option value="Allston">Allston</option>
@@ -206,7 +213,7 @@ export default class IndexPage extends React.Component {
             </div>
 
             <div className="txt">
-              <label htmlFor="text" className="txt-l">Zip Code</label>
+              <label htmlFor="lookup-zip" className="txt-l">Zip Code</label>
               <input
                 id="lookup-zip"
                 name="zip"
@@ -218,7 +225,7 @@ export default class IndexPage extends React.Component {
             </div>
 
             <div className="txt">
-              <label htmlFor="text" className="txt-l">Dog Name</label>
+              <label htmlFor="lookup-dogName" className="txt-l">Dog Name</label>
               <input
                 id="lookup-dogName"
                 name="dogName"
@@ -230,7 +237,9 @@ export default class IndexPage extends React.Component {
             </div>
 
             <div className="txt">
-              <label htmlFor="text" className="txt-l">Dog Age (Years)</label>
+              <label htmlFor="lookup-dogAge" className="txt-l">
+                Dog Age (Years)
+              </label>
               <style textAlign="right" />
               <input
                 id="lookup-dogAge"
@@ -243,11 +252,15 @@ export default class IndexPage extends React.Component {
             </div>
 
             <div className="sel">
-              <label htmlFor="breed" className="sel-l">
+              <label htmlFor="lookup-breed" className="sel-l">
                 Dog Breed
               </label>
               <div className="sel-c">
-                <select name="breed" id="lookup-breed" className="sel-f">
+                <select
+                  name="breed"
+                  id="lookup-breed"
+                  value={this.state.breed}
+                  className="sel-f">
                   <option value="Alaskan Malamute">Alaskan Malamute</option>
                   <option value="Alaskan Husky">Alaskan Husky</option>
                   <option value="Pit Bull Terrier">Pit Bull Terrier</option>
@@ -269,11 +282,15 @@ export default class IndexPage extends React.Component {
             </div>
 
             <div className="sel">
-              <label htmlFor="color" className="sel-l">
+              <label htmlFor="lookup-color" className="sel-l">
                 Primary Dog Color
               </label>
               <div className="sel-c">
-                <select name="color" id="lookup-color" className="sel-f">
+                <select
+                  name="color"
+                  id="lookup-color"
+                  value={this.state.color}
+                  className="sel-f">
                   <option value="Black">Black</option>
                   <option value="Brown">Brown</option>
                   <option value="Tan">Tan</option>
@@ -285,11 +302,15 @@ export default class IndexPage extends React.Component {
             </div>
 
             <div className="sel">
-              <label htmlFor="sex" className="sel-l">
+              <label htmlFor="lookup-sex" className="sel-l">
                 Dog Sex
               </label>
               <div className="sel-c">
-                <select name="sex" id="lookup-sex" className="sel-f">
+                <select
+                  name="sex"
+                  id="lookup-sex"
+                  value={this.state.sex}
+                  className="sel-f">
                   <option value="Female">Female</option>
                   <option value="Male">Male</option>
                 </select>
@@ -297,7 +318,9 @@ export default class IndexPage extends React.Component {
             </div>
 
             <div className="txt">
-              <label htmlFor="text" className="txt-l">Rabies Issue Date</label>
+              <label htmlFor="lookup-rabiesIssue" className="txt-l">
+                Rabies Issue Date
+              </label>
               <input
                 id="lookup-rabiesIssue"
                 name="rabiesIssued"
@@ -309,7 +332,7 @@ export default class IndexPage extends React.Component {
             </div>
 
             <div className="txt">
-              <label htmlFor="text" className="txt-l">
+              <label htmlFor="lookup-rabiesExpire" className="txt-l">
                 Rabies Expiration Date
               </label>
               <input
@@ -323,12 +346,14 @@ export default class IndexPage extends React.Component {
             </div>
 
             <div className="txt">
-              <label htmlFor="text" className="txt-l">Comments</label>
+              <label htmlFor="lookup-comments" className="txt-l">
+                Comments
+              </label>
               <textarea
                 id="lookup-comments"
                 placeholder="My dog is a mutt, with breeds..."
                 className="txt-f"
-                rows="10"
+                rows="5"
               />
             </div>
 
