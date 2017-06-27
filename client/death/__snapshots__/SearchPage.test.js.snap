@@ -37,9 +37,107 @@ exports[`rendering shows empty search box 1`] = `
       <h1
         className="sh-title"
       >
-        Death Certificates
+        Search for dog id
       </h1>
     </div>
+    <form
+      acceptCharset="UTF-8"
+      action="/death"
+      className="sf sf--md"
+      method="get"
+      onSubmit={[Function]}
+    >
+      <input
+        name="utf8"
+        type="hidden"
+        value="✓"
+      />
+      <div
+        className="txt"
+      >
+        <label
+          className="txt-l"
+          htmlFor="text"
+        >
+          Owner First Name
+        </label>
+        <input
+          className="txt-f"
+          id="text"
+          name="firstName"
+          onChange={[Function]}
+          placeholder="Emily"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="txt"
+      >
+        <label
+          className="txt-l"
+          htmlFor="text"
+        >
+          Owner Last Name
+        </label>
+        <input
+          className="txt-f"
+          id="text"
+          name="lastName"
+          onChange={[Function]}
+          placeholder="Elizabeth"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="txt"
+      >
+        <label
+          className="txt-l"
+          htmlFor="text"
+        >
+          Dog name
+        </label>
+        <input
+          className="txt-f"
+          id="text"
+          name="dogName"
+          onChange={[Function]}
+          placeholder="Clifford"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="txt"
+      >
+        <label
+          className="txt-l"
+          htmlFor="text"
+        >
+          Year licensed
+        </label>
+        <input
+          className="txt-f"
+          id="text"
+          name="year"
+          onChange={[Function]}
+          placeholder="2016"
+          value=""
+        />
+      </div>
+      <div
+        className="m-v400 m-h200"
+      >
+        <button
+          className="btn"
+          type="submit"
+        >
+          Search for id
+        </button>
+      </div>
+    </form>
     <form
       acceptCharset="UTF-8"
       action="/death"
@@ -115,9 +213,107 @@ exports[`rendering shows search results 1`] = `
       <h1
         className="sh-title"
       >
-        Death Certificates
+        Search for dog id
       </h1>
     </div>
+    <form
+      acceptCharset="UTF-8"
+      action="/death"
+      className="sf sf--md"
+      method="get"
+      onSubmit={[Function]}
+    >
+      <input
+        name="utf8"
+        type="hidden"
+        value="✓"
+      />
+      <div
+        className="txt"
+      >
+        <label
+          className="txt-l"
+          htmlFor="text"
+        >
+          Owner First Name
+        </label>
+        <input
+          className="txt-f"
+          id="text"
+          name="firstName"
+          onChange={[Function]}
+          placeholder="Emily"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="txt"
+      >
+        <label
+          className="txt-l"
+          htmlFor="text"
+        >
+          Owner Last Name
+        </label>
+        <input
+          className="txt-f"
+          id="text"
+          name="lastName"
+          onChange={[Function]}
+          placeholder="Elizabeth"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="txt"
+      >
+        <label
+          className="txt-l"
+          htmlFor="text"
+        >
+          Dog name
+        </label>
+        <input
+          className="txt-f"
+          id="text"
+          name="dogName"
+          onChange={[Function]}
+          placeholder="Clifford"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="txt"
+      >
+        <label
+          className="txt-l"
+          htmlFor="text"
+        >
+          Year licensed
+        </label>
+        <input
+          className="txt-f"
+          id="text"
+          name="year"
+          onChange={[Function]}
+          placeholder="2016"
+          value=""
+        />
+      </div>
+      <div
+        className="m-v400 m-h200"
+      >
+        <button
+          className="btn"
+          type="submit"
+        >
+          Search for id
+        </button>
+      </div>
+    </form>
     <form
       acceptCharset="UTF-8"
       action="/death"
