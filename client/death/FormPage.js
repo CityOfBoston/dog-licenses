@@ -118,7 +118,7 @@ export default class IndexPage extends React.Component {
                 Owner First Name
               </label>
               <input
-                id="lookup-firstname"
+                id="lookup-firstName"
                 name="firstName"
                 type="text"
                 value={this.state.firstName}
@@ -240,7 +240,6 @@ export default class IndexPage extends React.Component {
               <label htmlFor="lookup-dogAge" className="txt-l">
                 Dog Age (Years)
               </label>
-              <style textAlign="right" />
               <input
                 id="lookup-dogAge"
                 name="dogAge"
