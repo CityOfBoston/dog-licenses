@@ -60,9 +60,9 @@ GraphQLSchema {
   "_subscriptionType": null,
   "_typeMap": Object {
     "Boolean": "Boolean",
-    "DeathCertificate": "DeathCertificate",
-    "DeathCertificateSearch": "DeathCertificateSearch",
-    "DeathCertificates": "DeathCertificates",
+    "DogLicense": "DogLicense",
+    "DogLicenseSearch": "DogLicenseSearch",
+    "DogLicenses": "DogLicenses",
     "Int": "Int",
     "Query": "Query",
     "String": "String",

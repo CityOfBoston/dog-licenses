@@ -1,4 +1,4 @@
-type DeathCertificate {
+type DogLicense {
   id: String!
   firstName: String!
   lastName: String!
@@ -8,21 +8,21 @@ type DeathCertificate {
   age: String
 }
 
-type DeathCertificates {
-  search(query: String!, page: Int, pageSize: Int, startYear: String, endYear: String): DeathCertificateSearch!
-  certificate(id: String!): DeathCertificate
-  certificates(ids: [String!]!): [DeathCertificate]!
+type DogLicenses {
+  search(query: String!, page: Int, pageSize: Int, startYear: String, endYear: String): DogLicenseSearch!
+  license(id: String!): DogLicense
+  licenses(ids: [String!]!): [DogLicense]!
 }
 
 # Pages are 1-indexed to make the UI look better
-type DeathCertificateSearch {
+type DogLicenseSearch {
   page: Int!
   pageSize: Int!
   pageCount: Int!
-  results: [DeathCertificate!]!
+  results: [DogLicense!]!
   resultCount: Int!
 }
 
 type Query {
-  deathCertificates: DeathCertificates!
+  dogLicenses: DogLicenses!
 }
