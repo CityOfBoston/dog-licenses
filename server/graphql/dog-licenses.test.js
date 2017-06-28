@@ -39,7 +39,7 @@ describe('DogLicenses resolvers', () => {
   });
 
   describe('license', () => {
-    it('returns a specific certificate', async () => {
+    it('returns a specific licenses', async () => {
       expect(
         await resolvers.DogLicenses.license(
           {},
@@ -56,9 +56,9 @@ describe('DogLicenses resolvers', () => {
     });
   });
 
-  describe('certificates', () => {
-    it('returns certificates in order', async () => {
-      const certificates = await resolvers.DogLicenses.licenses(
+  describe('licenses', () => {
+    it('returns licenses in order', async () => {
+      const licenses = await resolvers.DogLicenses.licenses(
         {},
         {
           ids: [
@@ -69,9 +69,9 @@ describe('DogLicenses resolvers', () => {
         },
         { registry },
       );
-      expect(certificates[0]).toBeTruthy();
-      expect(certificates[1]).not.toBeTruthy();
-      expect(certificates[2]).toBeTruthy();
+      expect(licenses[0]).toBeTruthy();
+      expect(licenses[1]).not.toBeTruthy();
+      expect(licenses[2]).toBeTruthy();
     });
   });
 });
