@@ -58,7 +58,7 @@ describe('DogLicenses resolvers', () => {
 
   describe('certificates', () => {
     it('returns certificates in order', async () => {
-      const certificates = await resolvers.DogLicenses.certificates(
+      const certificates = await resolvers.DogLicenses.licenses(
         {},
         {
           ids: [
