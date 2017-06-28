@@ -1,13 +1,13 @@
 /* @flow */
 //  This file was automatically generated and should not be edited.
 
-export type FetchDogLicensesQueryVariables = {|
+export type FetchDeathCertificatesQueryVariables = {|
   ids: Array< string >,
 |};
 
-export type FetchDogLicensesQuery = {|
-  dogLicenses: {|
-    licenses: Array< {|
+export type FetchDeathCertificatesQuery = {|
+  deathCertificates: {|
+    certificates: Array< {|
       id: string,
       firstName: string,
       lastName: string,
@@ -19,15 +19,15 @@ export type FetchDogLicensesQuery = {|
   |},
 |};
 
-export type SearchDogLicensesQueryVariables = {|
+export type SearchDeathCertificatesQueryVariables = {|
   query: string,
   page: number,
   startYear: ?string,
   endYear: ?string,
 |};
 
-export type SearchDogLicensesQuery = {|
-  dogLicenses: {|
+export type SearchDeathCertificatesQuery = {|
+  deathCertificates: {|
     search: {|
       page: number,
       pageSize: number,

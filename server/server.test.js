@@ -99,7 +99,7 @@ describe('running server', () => {
     // Put this in when we have a way for .next changes not to trigger the
     // jest watcher
     // it('loads search page', async () => {
-    //   const resp = await server.inject('/dogs?q=smith');
+    //   const resp = await server.inject('/death?q=smith');
     //   expect(resp.statusCode).toEqual(200);
     // });
   });

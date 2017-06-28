@@ -2,10 +2,10 @@
 
 import { observable, computed, action, autorun } from 'mobx';
 
-import type { DogLicense } from '../types';
-import type DogLicensesDao from '../dao/DogLicensesDao';
+import type { DeathCertificate } from '../types';
+import type DeathCertificatesDao from '../dao/DeathCertificatesDao';
 
-export const LICENSE_COST = 14;
+export const CERTIFICATE_COST = 14;
 export const PROCESSING_FEE = 0.0275;
 
 type LocalStorageItem = {|
@@ -15,7 +15,7 @@ type LocalStorageItem = {|
 
 export class CartItem {
   id: string;
-  @observable.ref cert: ?DogLicense;
+  @observable.ref cert: ?DeathCertificate;
   @observable quantity: number;
 }
 
@@ -25,7 +25,7 @@ export default class Cart {
 
   localStorageDisposer: ?Function;
 
-  attach(localStorage: Storage, dogLicensesDao: DogLicensesDao) {
+  attach(localStorage: Storage, deathCertificatesDao: DeathCertificatesDao) {
     if (localStorage) {
       try {
         const savedCart: Array<LocalStorageItem> = JSON.parse(
@@ -42,10 +42,10 @@ export default class Cart {
 
               this.pendingFetches += 1;
 
-              dogLicensesDao.get(id).then(
+              deathCertificatesDao.get(id).then(
                 action(
                   'hydrate item from local storage complete',
-                  (cert: ?DogLicense) => {
+                  (cert: ?DeathCertificate) => {
                     item.cert = cert;
                     this.pendingFetches -= 1;
                   },
@@ -94,12 +94,12 @@ export default class Cart {
   @computed
   get cost(): number {
     return (
-      Math.ceil(this.size * LICENSE_COST * (1 + PROCESSING_FEE) * 100) / 100
+      Math.ceil(this.size * CERTIFICATE_COST * (1 + PROCESSING_FEE) * 100) / 100
     );
   }
 
   @action
-  add(cert: DogLicense, quantity: number) {
+  add(cert: DeathCertificate, quantity: number) {
     const existingItem = this.items.find(item => item.id === cert.id);
     if (existingItem) {
       existingItem.quantity += quantity;

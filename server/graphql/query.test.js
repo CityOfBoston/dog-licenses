@@ -3,9 +3,9 @@
 import { resolvers } from './query';
 
 describe('Query resolvers', () => {
-  describe('dogLicenses', () => {
+  describe('deathCertificates', () => {
     it('returns an empty value', () => {
-      expect(resolvers.Query.dogLicenses()).toEqual({});
+      expect(resolvers.Query.deathCertificates()).toEqual({});
     });
   });
 });

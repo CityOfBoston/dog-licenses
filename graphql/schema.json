@@ -13,7 +13,7 @@
           "description": "",
           "fields": [
             {
-              "name": "dogLicenses",
+              "name": "deathCertificates",
               "description": "",
               "args": [],
               "type": {
@@ -21,7 +21,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "DogLicenses",
+                  "name": "DeathCertificates",
                   "ofType": null
                 }
               },
@@ -36,7 +36,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "DogLicenses",
+          "name": "DeathCertificates",
           "description": "",
           "fields": [
             {
@@ -103,7 +103,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "DogLicenseSearch",
+                  "name": "DeathCertificateSearch",
                   "ofType": null
                 }
               },
@@ -111,7 +111,7 @@
               "deprecationReason": null
             },
             {
-              "name": "license",
+              "name": "certificate",
               "description": "",
               "args": [
                 {
@@ -131,14 +131,14 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "DogLicense",
+                "name": "DeathCertificate",
                 "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "licenses",
+              "name": "certificates",
               "description": "",
               "args": [
                 {
@@ -172,7 +172,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "DogLicense",
+                    "name": "DeathCertificate",
                     "ofType": null
                   }
                 }
@@ -208,7 +208,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "DogLicenseSearch",
+          "name": "DeathCertificateSearch",
           "description": "Pages are 1-indexed to make the UI look better",
           "fields": [
             {
@@ -274,7 +274,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "OBJECT",
-                      "name": "DogLicense",
+                      "name": "DeathCertificate",
                       "ofType": null
                     }
                   }
@@ -307,7 +307,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "DogLicense",
+          "name": "DeathCertificate",
           "description": "",
           "fields": [
             {
