@@ -5,7 +5,6 @@ import { FixtureRegistry } from '../services/Registry';
 import type Registry from '../services/Registry';
 
 import fixtureData from '../../fixtures/registry/smith.json';
-
 describe('DogLicenses resolvers', () => {
   let registry: Registry;
 

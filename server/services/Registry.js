@@ -126,7 +126,7 @@ export default class Registry {
     const idToLicenseMap: { [key: string]: DogLicense } = {};
     allResults.forEach(results => {
       results.forEach((cert: DogLicense) => {
-        idToLicenseMap[cert.LicenseID.toString()] = cert;
+        idToLicenseMap[cert.CertificateID.toString()] = cert;
       });
     });
 
