@@ -10,7 +10,7 @@ import makeLoopbackGraphql from './loopback-graphql';
 import type { LoopbackGraphql } from './loopback-graphql';
 import type { RequestAdditions } from '../server/request-additions';
 
-import DeathCertificatesDao from './dao/DeathCertificatesDao';
+import DogLicensesDao from './dao/DogLicensesDao';
 import RouterListener from './RouterListener';
 
 // Higher-order component for a Page in our app.
@@ -22,7 +22,7 @@ import RouterListener from './RouterListener';
 
 export type ClientDependencies = {
   cart: Cart,
-  deathCertificatesDao: DeathCertificatesDao,
+  dogLicensesDao: DogLicensesDao,
   loopbackGraphql: LoopbackGraphql,
 };
 
@@ -48,16 +48,16 @@ function makeDependencies(req: ?RequestAdditions): ClientDependencies {
   }
 
   const loopbackGraphql = makeLoopbackGraphql(req);
-  const deathCertificatesDao = new DeathCertificatesDao(loopbackGraphql);
+  const dogLicensesDao = new DogLicensesDao(loopbackGraphql);
 
   const cart = new Cart();
   if (process.browser) {
-    cart.attach(window.localStorage, deathCertificatesDao);
+    cart.attach(window.localStorage, dogLicensesDao);
   }
 
   const dependencies: ClientDependencies = {
     cart,
-    deathCertificatesDao,
+    dogLicensesDao,
     loopbackGraphql,
   };
 

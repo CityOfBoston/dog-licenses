@@ -2,8 +2,8 @@
 
 import Cart from './Cart';
 
-jest.mock('../dao/DeathCertificatesDao');
-const DeathCertificatesDao = require('../dao/DeathCertificatesDao').default;
+jest.mock('../dao/DogLicensesDao');
+const DogLicensesDao = require('../dao/DogLicensesDao').default;
 
 const CERT_1: any = {
   id: '00001',
@@ -50,7 +50,7 @@ describe('cost', () => {
     cart = new Cart();
   });
 
-  it('charges based on one certificate', () => {
+  it('charges based on one license', () => {
     cart.add(CERT_1, 1);
     expect(cart.cost).toEqual(14.39);
   });
@@ -103,7 +103,7 @@ describe('remove', () => {
 describe('attach', () => {
   let resolveGraphqls;
   let localStorage: any;
-  let deathCertificatesDao;
+  let dogLicensesDao;
   let cart: Cart;
 
   beforeEach(() => {
@@ -112,11 +112,11 @@ describe('attach', () => {
       setItem: jest.fn(),
     };
 
-    deathCertificatesDao = new DeathCertificatesDao(jest.fn());
+    dogLicensesDao = new DogLicensesDao(jest.fn());
 
     resolveGraphqls = [];
 
-    deathCertificatesDao.get.mockImplementation(
+    dogLicensesDao.get.mockImplementation(
       () =>
         new Promise(resolve => {
           resolveGraphqls.push(resolve);
@@ -138,10 +138,10 @@ describe('attach', () => {
       ]),
     );
 
-    cart.attach(localStorage, deathCertificatesDao);
+    cart.attach(localStorage, dogLicensesDao);
 
-    expect(deathCertificatesDao.get).toHaveBeenCalledWith('00001');
-    expect(deathCertificatesDao.get).toHaveBeenCalledWith('00002');
+    expect(dogLicensesDao.get).toHaveBeenCalledWith('00001');
+    expect(dogLicensesDao.get).toHaveBeenCalledWith('00002');
 
     expect(cart.loading).toEqual(true);
 
@@ -166,7 +166,7 @@ describe('attach', () => {
   });
 
   it('updates local storage with new values', async () => {
-    cart.attach(localStorage, deathCertificatesDao);
+    cart.attach(localStorage, dogLicensesDao);
 
     cart.add(CERT_1, 5);
     expect(localStorage.setItem).toHaveBeenCalledWith(

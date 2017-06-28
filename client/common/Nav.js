@@ -18,11 +18,11 @@ export default observer(function Nav({ cart, link }: Props) {
   switch (link) {
     case 'checkout':
       linkTitle = 'Checkout';
-      linkPath = '/death/checkout';
+      linkPath = '/dogs/checkout';
       break;
     case 'lookup':
       linkTitle = 'Back to Lookup';
-      linkPath = '/death';
+      linkPath = '/dogs';
       break;
     default:
       linkTitle = null;
@@ -36,7 +36,7 @@ export default observer(function Nav({ cart, link }: Props) {
         <Link href={linkPath}>
           <a className={'nv-s-l-b back-link'}>{linkTitle}</a>
         </Link>
-        <Link href="/death/checkout">
+        <Link href="/dogs/checkout">
           <a className="cart-link">{cart.size}</a>
         </Link>
       </div>
