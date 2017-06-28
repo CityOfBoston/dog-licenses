@@ -43,7 +43,7 @@ describe('DogLicenses resolvers', () => {
       expect(
         await resolvers.DogLicenses.license(
           {},
-          { id: fixtureData[0].LicenseID.toString() },
+          { id: fixtureData[0].CertificateID.toString() },
           { registry },
         ),
       ).toBeTruthy();
@@ -62,9 +62,9 @@ describe('DogLicenses resolvers', () => {
         {},
         {
           ids: [
-            fixtureData[4].LicenseID.toString(),
+            fixtureData[4].CertificateID.toString(),
             '999992',
-            fixtureData[2].LicenseID.toString(),
+            fixtureData[2].CertificateID.toString(),
           ],
         },
         { registry },
