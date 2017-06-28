@@ -14,7 +14,7 @@ type DbResponse<R> = {|
 |};
 
 export type DogLicense = {|
-  LicenseID: number,
+  CertificateID: number,
   'Registered Number': string,
   InOut: 'I' | '*' | '#',
   'Date of Death': ?string,
@@ -209,7 +209,7 @@ export class FixtureRegistry {
   }
 
   async lookup(id: string): Promise<?DogLicenseSearchResult> {
-    return this.data.find(res => res.LicenseID.toString() === id);
+    return this.data.find(res => res.CertificateID.toString() === id);
   }
 }
 
