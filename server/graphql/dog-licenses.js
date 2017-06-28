@@ -74,7 +74,7 @@ function searchResultToDogLicense(
   res: DogLicenseSearchResult | DbDogLicense,
 ): DogLicense {
   return {
-    id: res.LicenseID.toString(),
+    id: res.CertificateID.toString(),
     firstName: res['First Name'],
     lastName: res['Last Name'],
     deathDate: res['Date of Death'],
