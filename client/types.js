@@ -1,17 +1,17 @@
 // @flow
 
 import type {
-  FetchDeathCertificatesQuery,
-  SearchDeathCertificatesQuery,
+  FetchDogLicensesQuery,
+  SearchDogLicensesQuery,
 } from './queries/graphql-types';
 
-export type DeathCertificate = $ArrayElement<
+export type DogLicense = $ArrayElement<
   $PropertyType<
-    $PropertyType<FetchDeathCertificatesQuery, 'deathCertificates'>,
-    'certificates',
+    $PropertyType<FetchDogLicensesQuery, 'dogLicenses'>,
+    'licenses',
   >,
 >;
-export type DeathCertificateSearchResults = $PropertyType<
-  $PropertyType<SearchDeathCertificatesQuery, 'deathCertificates'>,
+export type DogLicenseSearchResults = $PropertyType<
+  $PropertyType<SearchDogLicensesQuery, 'dogLicenses'>,
   'search',
 >;
