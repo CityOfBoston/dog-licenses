@@ -162,13 +162,13 @@ export function makeServer({ opbeat }: ServerArgs) {
   server.route({
     method: 'GET',
     path: '/',
-    handler: (request, reply) => reply.redirect('/death'),
+    handler: (request, reply) => reply.redirect('/dogs'),
   });
 
   server.route({
     method: 'GET',
-    path: '/death/certificate/{id}',
-    handler: addRequestAdditions(nextHandler(app, '/death/certificate')),
+    path: '/dogs/license/{id}',
+    handler: addRequestAdditions(nextHandler(app, '/dogs/license')),
   });
 
   server.route({
