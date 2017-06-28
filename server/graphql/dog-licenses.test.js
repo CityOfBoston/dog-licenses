@@ -1,6 +1,6 @@
 // @flow
 
-import { resolvers } from './dog-certificates';
+import { resolvers } from './dog-licenses';
 import { FixtureRegistry } from '../services/Registry';
 import type Registry from '../services/Registry';
 
