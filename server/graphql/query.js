@@ -2,12 +2,12 @@
 
 export const Schema = `
 type Query {
-  dogLicenses: DogLicenses!
+  deathCertificates: DeathCertificates!
 }
 `;
 
 export const resolvers = {
   Query: {
-    dogLicenses: () => ({}),
+    deathCertificates: () => ({}),
   },
 };

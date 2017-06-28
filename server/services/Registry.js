@@ -13,7 +13,7 @@ type DbResponse<R> = {|
   rowsAffected: Array<number>,
 |};
 
-export type DogLicense = {|
+export type DeathCertificate = {|
   CertificateID: number,
   'Registered Number': string,
   InOut: 'I' | '*' | '#',
@@ -26,8 +26,8 @@ export type DogLicense = {|
   Pending: number,
 |};
 
-export type DogLicenseSearchResult = {|
-  /* :: ...DogLicense, */
+export type DeathCertificateSearchResult = {|
+  /* :: ...DeathCertificate, */
   ResultCount: number,
 |};
 
@@ -64,7 +64,7 @@ export function splitKeys(
 
 export default class Registry {
   pool: ConnectionPool;
-  lookupLoader: DataLoader<string, ?DogLicense>;
+  lookupLoader: DataLoader<string, ?DeathCertificate>;
 
   constructor(pool: ConnectionPool) {
     this.pool = pool;
@@ -79,9 +79,9 @@ export default class Registry {
     pageSize: number,
     startYear: ?string,
     endYear: ?string,
-  ): Promise<Array<DogLicenseSearchResult>> {
+  ): Promise<Array<DeathCertificateSearchResult>> {
     const resp: DbResponse<
-      DogLicenseSearchResult,
+      DeathCertificateSearchResult,
     > = (await this.pool
       .request()
       .input('searchFor', name)
@@ -90,7 +90,7 @@ export default class Registry {
       .input('sortBy', 'dateOfDeath')
       .input('startYear', startYear)
       .input('endYear', endYear)
-      .execute('Registry.Death.sp_FindLicensesWeb'): any);
+      .execute('Registry.Death.sp_FindCertificatesWeb'): any);
 
     const { recordset } = resp;
 
@@ -101,36 +101,38 @@ export default class Registry {
     return recordset;
   }
 
-  async lookup(id: string): Promise<?DogLicense> {
+  async lookup(id: string): Promise<?DeathCertificate> {
     return this.lookupLoader.load(id);
   }
 
   async lookupLoaderFetch(
     keys: Array<string>,
-  ): Promise<Array<?DogLicense | Error>> {
+  ): Promise<Array<?DeathCertificate | Error>> {
     // The api can only take 1000 characters of keys at once. We probably won't
     // run into that issue but just in case we split up and parallelize.
     const keyStrings = splitKeys(MAX_ID_LOOKUP_LENGTH, keys);
 
-    const allResults: Array<Array<DogLicense>> = await Promise.all(
+    const allResults: Array<Array<DeathCertificate>> = await Promise.all(
       keyStrings.map(async keyString => {
-        const resp: DbResponse<DogLicense> = (await this.pool
+        const resp: DbResponse<
+          DeathCertificate,
+        > = (await this.pool
           .request()
           .input('idList', keyString)
-          .execute('Registry.Death.sp_GetLicensesWeb'): any);
+          .execute('Registry.Death.sp_GetCertificatesWeb'): any);
 
         return resp.recordset;
       }),
     );
 
-    const idToLicenseMap: { [key: string]: DogLicense } = {};
+    const idToCertificateMap: { [key: string]: DeathCertificate } = {};
     allResults.forEach(results => {
-      results.forEach((cert: DogLicense) => {
-        idToLicenseMap[cert.CertificateID.toString()] = cert;
+      results.forEach((cert: DeathCertificate) => {
+        idToCertificateMap[cert.CertificateID.toString()] = cert;
       });
     });
 
-    return keys.map(k => idToLicenseMap[k]);
+    return keys.map(k => idToCertificateMap[k]);
   }
 }
 
@@ -194,9 +196,9 @@ export async function makeRegistryFactory({
 }
 
 export class FixtureRegistry {
-  data: Array<DogLicenseSearchResult>;
+  data: Array<DeathCertificateSearchResult>;
 
-  constructor(data: Array<DogLicenseSearchResult>) {
+  constructor(data: Array<DeathCertificateSearchResult>) {
     this.data = data;
   }
 
@@ -204,11 +206,11 @@ export class FixtureRegistry {
     query: string,
     page: number,
     pageSize: number,
-  ): Promise<Array<DogLicenseSearchResult>> {
+  ): Promise<Array<DeathCertificateSearchResult>> {
     return this.data.slice(page * pageSize, (page + 1) * pageSize);
   }
 
-  async lookup(id: string): Promise<?DogLicenseSearchResult> {
+  async lookup(id: string): Promise<?DeathCertificateSearchResult> {
     return this.data.find(res => res.CertificateID.toString() === id);
   }
 }
