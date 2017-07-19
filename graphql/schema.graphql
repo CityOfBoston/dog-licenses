@@ -1,26 +1,53 @@
 type DogLicense {
+  firstName: String
+  lastName: String
+  dogName: String
   id: String!
-  firstName: String!
-  lastName: String!
-  deathDate: String
-  deathYear: String!
-  pending: Boolean
-  age: String
+  year: Int
+  personId: String!
+  tagNo: String
+  tagType: String
+  tagExp: Int
+  tagStat: String
+  vacDate: Int
+  vacTerm: Int
+  vacExp: Int
+  userId: String
+  stamp: Int
+  jurisdiction: String
+  tagIdentity: Int
+  tagTail: String
+  clerkid: String
+  animalType: String
+  sex: String
+  yearsOld: Int
+  monthsOld: Int
+  dob: Int
+  colorGroup: String
+  priColor: String
+  secColor: String
+  breedGroup: String
+  priBreed: String
+  secBreed: String
+  animalCond: String
+  animalStat: String
+  statusDate: Int
+  animalSize: String
+  streetNo: Int
+  streetName: String
+  streetType: String
+  apt: String
+  city: String
+  state: String
+  zipCode: String
+  areaCode: String
+  phone: String
 }
 
 type DogLicenses {
-  search(query: String!, page: Int, pageSize: Int, startYear: String, endYear: String): DogLicenseSearch!
+  search(firstName: String!, lastName: String!, dogName: String!, year: Int!): [DogLicense!]!
   license(id: String!): DogLicense
   licenses(ids: [String!]!): [DogLicense]!
-}
-
-# Pages are 1-indexed to make the UI look better
-type DogLicenseSearch {
-  page: Int!
-  pageSize: Int!
-  pageCount: Int!
-  results: [DogLicense!]!
-  resultCount: Int!
 }
 
 type Query {

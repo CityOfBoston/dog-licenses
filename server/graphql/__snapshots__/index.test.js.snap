@@ -61,7 +61,6 @@ GraphQLSchema {
   "_typeMap": Object {
     "Boolean": "Boolean",
     "DogLicense": "DogLicense",
-    "DogLicenseSearch": "DogLicenseSearch",
     "DogLicenses": "DogLicenses",
     "Int": "Int",
     "Query": "Query",

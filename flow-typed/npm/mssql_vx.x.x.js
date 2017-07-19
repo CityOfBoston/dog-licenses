@@ -8,7 +8,7 @@ declare module 'mssql' {
     recordset: ?Array<Object>,
     output: Object,
     rowsAffected: Array<number>,
-    returnVaule: number,
+    returnValue: number,
   |};
 
   declare export type BasicCallback = (err: ?Error) => void;
@@ -52,5 +52,7 @@ declare module 'mssql' {
     output(name: string, type: mixed, value?: mixed): this;
     execute(command: string): Promise<RequestResult>;
     execute(command: string, callback: RequestResultCallback): this;
+    query(command: string): Promise<RequestResult>;
+    query(command: string, callback: RequestResultCallback): this;
   }
 }
