@@ -13,17 +13,60 @@ type DbResponse<R> = {|
   rowsAffected: Array<number>,
 |};
 
+//should match SQL output
 export type DogLicense = {|
-  CertificateID: number,
-  'Registered Number': string,
-  InOut: 'I' | '*' | '#',
-  'Date of Death': ?string,
-  'Decedent Name': string,
-  'Last Name': string,
-  'First Name': string,
-  RegisteredYear: string,
-  AgeOrDateOfBirth: string,
-  Pending: number,
+  CertificateID: string,
+  //Because of the joined tables in the sql search, some
+  //columns are duplicated, resulting in array results.
+  //We expect IDs to be the same because they are join columns.
+  'userid': string[],
+  'stamp': number[],
+  'person_id': string[],
+  'animal_id': string[],
+  'sex': string[],
+  'last_name': string,
+  'first_name': string,
+  'year': string,
+  'animal_name': string,
+  'tag_date': number,
+  'tag_no': string,
+  'tag_type': string,
+  'tag_date': number,
+  'tag_exp': number,
+  'tag_stat': string,
+  'vac_date': number,
+  'vac_term': number,
+  'vac_exp': number,
+  'jurisdiction': string,
+  'tag_identity': number,
+  'tag_tail': string,
+  'clerk_id': string,
+  'animal_name': string,
+  'animal_type': string,
+  'years_old': number,
+  'months_old': number,
+  'dob': number,
+  'color_group': string,
+  'primary_color': string,
+  'secondary_color': string,
+  'breed_group': string,
+  'primary_breed': string,
+  'secondary_breed': string,
+  'animal_cond': string,
+  'animal_stat': string,
+  'status_date': number,
+  'animal_size': string,
+  'last_name': string,
+  'first_name': string,
+  'street_no': number,
+  'street_name': string,
+  'street_type': string,
+  'apt': string,
+  'city': string,
+  'state': string,
+  'zip_code': string,
+  'phone_area_code': string,
+  'phone_number': string,
 |};
 
 export type DogLicenseSearchResult = {|
@@ -74,26 +117,34 @@ export default class Registry {
   }
 
   async search(
-    name: string,
-    page: number,
-    pageSize: number,
-    startYear: ?string,
-    endYear: ?string,
+    firstName: string,
+    lastName: string,
+    dogName: string,
+    year: number,
   ): Promise<Array<DogLicenseSearchResult>> {
     const resp: DbResponse<
       DogLicenseSearchResult,
     > = (await this.pool
       .request()
-      .input('searchFor', name)
-      .input('pageNumber', page)
-      .input('pageSize', pageSize)
-      .input('sortBy', 'dateOfDeath')
-      .input('startYear', startYear)
-      .input('endYear', endYear)
-      .execute('Registry.Death.sp_FindLicensesWeb'): any);
+      .input('dogName', dogName)
+      .input('firstName', firstName)
+      .input('lastName', lastName)
+      .input('year', year)
+      .query(
+        `SELECT TOP (20) *
+      FROM [Animal].[SYSADM].[tag] tag 
+      JOIN [Animal].[SYSADM].[animal] animal 
+      ON tag.animal_id = animal.animal_id 
+      JOIN [Animal].[SYSADM].[person] person
+      ON tag.person_id = person.person_id
+      WHERE animal.animal_stat = 'ACTIVE'
+      AND animal.animal_name = @dogName
+      AND YEAR(tag.tag_date) = @year
+      AND person.first_name = @firstName
+      AND person.last_name = @lastName`,
+      ): any);
 
     const { recordset } = resp;
-
     if (!recordset) {
       throw new Error('Recordset for search came back empty');
     }
@@ -111,13 +162,12 @@ export default class Registry {
     // The api can only take 1000 characters of keys at once. We probably won't
     // run into that issue but just in case we split up and parallelize.
     const keyStrings = splitKeys(MAX_ID_LOOKUP_LENGTH, keys);
-
     const allResults: Array<Array<DogLicense>> = await Promise.all(
       keyStrings.map(async keyString => {
         const resp: DbResponse<DogLicense> = (await this.pool
           .request()
           .input('idList', keyString)
-          .execute('Registry.Death.sp_GetLicensesWeb'): any);
+          .execute('Fin.Death.sp_GetLicensesWeb'): any);
 
         return resp.recordset;
       }),
@@ -200,13 +250,12 @@ export class FixtureRegistry {
     this.data = data;
   }
 
-  async search(
-    query: string,
-    page: number,
-    pageSize: number,
-  ): Promise<Array<DogLicenseSearchResult>> {
-    return this.data.slice(page * pageSize, (page + 1) * pageSize);
-  }
+  // async search(
+  //   lastName: string,
+  //   firstName: string,
+  // ): Promise<Array<DogLicenseSearchResult>> {
+  //   return this.data.slice(page * pageSize, (page + 1) * pageSize);
+  // }
 
   async lookup(id: string): Promise<?DogLicenseSearchResult> {
     return this.data.find(res => res.CertificateID.toString() === id);

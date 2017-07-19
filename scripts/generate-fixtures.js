@@ -26,7 +26,7 @@ const FIXTURE_SEARCHES = ['smith'];
 
   await Promise.all(
     FIXTURE_SEARCHES.map(async search => {
-      const records = await registry.search(search, 0, 500);
+      const records = await registry.search('LUCY', 'LUCY', 'LUCY', 2015);
       fs.writeFileSync(
         path.join(__dirname, `../fixtures/registry/${search}.json`),
         JSON.stringify(records, null, 2),
