@@ -3,25 +3,17 @@
 import DogLicensesDao from './DogLicensesDao';
 
 import type { LoopbackGraphql } from '../loopback-graphql';
-import type { DogLicenseSearchResults } from '../types';
+//import type { DogLicenseSearchResults } from '../types';
 
-import { TYPICAL_LICENSE } from '../../fixtures/client/dog-licenses';
+//import { TYPICAL_LICENSE } from '../../fixtures/client/dog-licenses';
 
-jest.mock('../queries/fetch-dog-licenses');
-const fetchDogLicenses: JestMockFn = (require('../queries/fetch-dog-licenses'): any)
-  .default;
+// jest.mock('../queries/search-dog-licenses');
+// const searchDogLicenses: JestMockFn = (require('../queries/search-dog-licenses'): any)
+//   .default;
 
-jest.mock('../queries/search-dog-licenses');
-const searchDogLicenses: JestMockFn = (require('../queries/search-dog-licenses'): any)
-  .default;
-
-const TEST_SEARCH_RESULTS: DogLicenseSearchResults = {
-  results: [TYPICAL_LICENSE],
-  page: 0,
-  pageCount: 1,
-  pageSize: 10,
-  resultCount: 1,
-};
+// const TEST_SEARCH_RESULTS: DogLicenseSearchResults = {
+//   results: [TYPICAL_LICENSE],
+// };
 
 let loopbackGraphql: LoopbackGraphql;
 let dao: DogLicensesDao;
@@ -31,35 +23,20 @@ beforeEach(() => {
   dao = new DogLicensesDao(loopbackGraphql);
 });
 
-describe('get', () => {
-  it('fetches the license with the given id', async () => {
-    fetchDogLicenses.mockReturnValue(Promise.resolve([TYPICAL_LICENSE]));
+// describe('search', () => {
+//   it('searches for the query string', async () => {
+//     searchDogLicenses.mockReturnValue(Promise.resolve(TEST_SEARCH_RESULTS));
 
-    expect(await dao.get('000002')).toEqual(TYPICAL_LICENSE);
-  });
+//     expect((await dao.search('Banner', 1)).results).toEqual([TYPICAL_LICENSE]);
+//   });
 
-  it('caches the response for the next get', async () => {
-    fetchDogLicenses.mockReturnValueOnce(Promise.resolve([TYPICAL_LICENSE]));
+//   it('primes the id cache', async () => {
+//     searchDogLicenses.mockReturnValue(Promise.resolve(TEST_SEARCH_RESULTS));
+//     await dao.search('Banner', 1);
 
-    expect(await dao.get('000002')).toEqual(TYPICAL_LICENSE);
-    expect(await dao.get('000002')).toEqual(TYPICAL_LICENSE);
-  });
-});
-
-describe('search', () => {
-  it('searches for the query string', async () => {
-    searchDogLicenses.mockReturnValue(Promise.resolve(TEST_SEARCH_RESULTS));
-
-    expect((await dao.search('Banner', 1)).results).toEqual([TYPICAL_LICENSE]);
-  });
-
-  it('primes the id cache', async () => {
-    searchDogLicenses.mockReturnValue(Promise.resolve(TEST_SEARCH_RESULTS));
-    await dao.search('Banner', 1);
-
-    expect(await dao.get(TYPICAL_LICENSE.id)).toEqual(TYPICAL_LICENSE);
-  });
-});
+//     expect(await dao.get(TYPICAL_LICENSE.id)).toEqual(TYPICAL_LICENSE);
+//   });
+// });
 
 describe('parseQuery', () => {
   it('passes through query with no years', () => {

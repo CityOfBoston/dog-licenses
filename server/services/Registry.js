@@ -26,7 +26,6 @@ export type DogLicense = {|
   'sex': string[],
   'last_name': string,
   'first_name': string,
-  'year': string,
   'animal_name': string,
   'tag_date': number,
   'tag_no': string,

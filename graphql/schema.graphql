@@ -3,7 +3,6 @@ type DogLicense {
   lastName: String
   dogName: String
   id: String!
-  year: Int
   personId: String!
   tagNo: String
   tagType: String

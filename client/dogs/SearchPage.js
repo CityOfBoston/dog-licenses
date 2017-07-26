@@ -7,25 +7,19 @@ import type { Context } from 'next';
 
 import type { ClientDependencies } from '../page';
 
-import type Cart from '../store/Cart';
-import Nav from '../common/Nav';
-import Pagination from '../common/Pagination';
 import type { DogLicenseSearchResults } from '../types';
 
 import SearchResult from './search/SearchResult';
 
 export type InitialProps = {|
-  query: string,
   results: ?DogLicenseSearchResults,
 |};
 
 export type Props = {
-  /* :: ...InitialProps, */
-  cart: Cart,
+  ...InitialProps,
 };
 
 type State = {
-  query: string,
   firstName: string,
   lastName: string,
   dogName: string,
@@ -43,39 +37,34 @@ export default class IndexPage extends React.Component {
     const { query } = ctx;
 
     let results = null;
+    //console.log('QUERY', query);
 
-    if (query.q) {
+    if (query.firstName && query.lastName && query.dogName && query.year) {
       results = await dogLicensesDao.search(
-        query.q,
-        parseInt(query.page, 10) || 1,
+        query.firstName,
+        query.lastName,
+        query.dogName,
+        parseInt(query.year, 10),
       );
+      //console.log('Results', results);
     }
 
     return {
-      query: query.q || '',
       results,
     };
   }
 
   constructor(props: Props) {
     super(props);
-
-    const { query } = props;
-    //const { firstname } = props;
+    //const { results } = props;
 
     this.state = {
-      query,
-      //firstname,
       firstName: '',
       lastName: '',
       dogName: '',
       year: '',
     };
   }
-
-  handleQueryChange = (ev: SyntheticInputEvent) => {
-    this.setState({ query: ev.target.value });
-  };
 
   handleInputChange = (ev: SyntheticInputEvent) => {
     const target = ev.target;
@@ -85,15 +74,14 @@ export default class IndexPage extends React.Component {
   };
 
   handleSubmit = (ev: SyntheticInputEvent) => {
-    const { query } = this.state;
+    const query = this.state;
 
     ev.preventDefault();
-    Router.push(`/dogs?q=${encodeURIComponent(query)}`);
+    Router.push(`/dogs?q=${encodeURIComponent(query.toString())}`);
   };
 
   render() {
-    const { results, cart } = this.props;
-    const { query } = this.state;
+    const { results } = this.props;
 
     return (
       <div>
@@ -101,19 +89,16 @@ export default class IndexPage extends React.Component {
           <title>Boston.gov — Dog Licenses</title>
         </Head>
 
-        <Nav cart={cart} link="checkout" />
-
         <div className="p-a300">
           <div className="sh sh--b0">
-            <h1 className="sh-title">Search for dog id</h1>
+            <h1 className="sh-title">Renew Your Dog License</h1>
           </div>
 
           <form
             className="sf sf--md"
             acceptCharset="UTF-8"
             method="get"
-            action="/dogs"
-            onSubmit={this.handleSubmit}>
+            action="/dogs">
             <input name="utf8" type="hidden" value="✓" />
 
             <div className="txt">
@@ -171,60 +156,31 @@ export default class IndexPage extends React.Component {
             </div>
 
           </form>
-
-          <form
-            className="sf sf--md"
-            acceptCharset="UTF-8"
-            method="get"
-            action="/dogs"
-            onSubmit={this.handleSubmit}>
-            <input name="utf8" type="hidden" value="✓" />
-
-            <div className="sf-i">
-              <input
-                type="text"
-                name="q"
-                id="q"
-                value={query}
-                onChange={this.handleQueryChange}
-                placeholder="Search…"
-                className="sf-i-f"
-                autoComplete="off"
-              />
-              <button className="sf-i-b" type="submit">Search</button>
-            </div>
-          </form>
         </div>
 
         {results && this.renderResults(results)}
         <div />
-
       </div>
     );
   }
 
   renderResults(results: DogLicenseSearchResults) {
     // we want the query that was searched for
-    const { query } = this.props;
-
-    const start = 1 + (results.page - 1) * results.pageSize;
-    const end = Math.min(start + results.pageSize - 1, results.resultCount);
+    // const start = 1 + (results.page - 1) * results.pageSize;
+    // const end = Math.min(start + results.pageSize - 1, results.resultCount);
 
     return (
       <div>
+
         <div className="p-a300 b--w">
           <div className="t--sans tt-u" style={{ fontSize: 12 }}>
-            Showing {start}–{end} of {results.resultCount.toLocaleString()}{' '}
-            results for “{query}”
+            Showing results:
           </div>
         </div>
 
-        {results.results.map(license =>
+        {results.map(license =>
           <SearchResult license={license} key={license.id} />,
         )}
-
-        {results.resultCount > results.results.length &&
-          this.renderPagination(results)}
 
         <div className="p-a300">
           Not finding what you’re looking for? Try refining your search or{' '}
@@ -234,14 +190,20 @@ export default class IndexPage extends React.Component {
             request a dog license
           </a>.
         </div>
+
+        <form
+          className="sf sf--md"
+          acceptCharset="UTF-8"
+          method="get"
+          action="/dogs/form">
+          <input name="utf8" type="hidden" value="✓" />
+
+          <div className="m-v400 m-h200">
+            <button className="btn" type="submit">Renew This license</button>
+          </div>
+
+        </form>
       </div>
     );
-  }
-
-  renderPagination({ page, pageCount }: DogLicenseSearchResults) {
-    const { query } = this.props;
-    const makeHref = (p: number) => `/dogs?q=${query}&page=${p}`;
-
-    return <Pagination page={page} pageCount={pageCount} hrefFunc={makeHref} />;
   }
 }

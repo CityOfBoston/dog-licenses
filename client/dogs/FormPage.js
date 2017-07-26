@@ -2,14 +2,8 @@
 
 import React from 'react';
 import Head from 'next/head';
-//import Router from 'next/router';
-//import type { Context } from 'next';
-
-//import type { ClientDependencies } from '../page';
-
-import type Cart from '../store/Cart';
-import Nav from '../common/Nav';
-//import Pagination from '../common/Pagination';
+import type { Context } from 'next';
+import type { ClientDependencies } from '../page';
 import type { DogLicenseSearchResults } from '../types';
 
 import SearchResult from './search/SearchResult';
@@ -20,7 +14,6 @@ export type InitialProps = {|
 
 export type Props = {
   /* :: ...InitialProps, */
-  cart: Cart,
 };
 
 type State = {
@@ -45,16 +38,29 @@ export default class IndexPage extends React.Component {
   props: Props;
   state: State;
 
-  // static async getInitialProps(
-  //   ctx: Context<*>,
-  //   { dogLicensesDao }: ClientDependencies,
-  // ): Promise<InitialProps> {
-  //   let results = null;
+  static async getInitialProps(
+    ctx: Context<*>,
+    { dogLicensesDao }: ClientDependencies,
+  ): Promise<InitialProps> {
+    const { query } = ctx;
 
-  //   return {
-  //     results,
-  //   };
-  // }
+    let results = null;
+    //console.log('QUERY', query);
+
+    if (query.firstName && query.lastName && query.dogName && query.year) {
+      results = await dogLicensesDao.search(
+        query.firstName,
+        query.lastName,
+        query.dogName,
+        parseInt(query.year, 10),
+      );
+      //console.log('Results', results);
+    }
+
+    return {
+      results,
+    };
+  }
 
   constructor(props: Props) {
     super(props);
@@ -91,18 +97,18 @@ export default class IndexPage extends React.Component {
   };
 
   render() {
-    const { /*results,*/ cart } = this.props;
+    // const {
+    //   /*results,*/
+    // } = this.props;
     return (
       <div>
         <Head>
           <title>Boston.gov — Dog Licenses</title>
         </Head>
 
-        <Nav cart={cart} link="checkout" />
-
         <div className="p-a300">
           <div className="sh sh--b0">
-            <h1 className="sh-title">Search for dog id</h1>
+            <h1 className="sh-title">License Your Dog</h1>
           </div>
 
           <form
@@ -372,26 +378,21 @@ export default class IndexPage extends React.Component {
 
   renderResults(results: DogLicenseSearchResults) {
     // we want the query that was searched for
-    const start = 1 + (results.page - 1) * results.pageSize;
-    const end = Math.min(start + results.pageSize - 1, results.resultCount);
+    // const start = 1 + (results.page - 1) * results.pageSize;
+    // const end = Math.min(start + results.pageSize - 1, results.resultCount);
 
     return (
       <div>
+
         <div className="p-a300 b--w">
           <div className="t--sans tt-u" style={{ fontSize: 12 }}>
-            Showing {start}–{end} of {results.resultCount.toLocaleString()}{' '}
-            results for “”
+            Showing results:
           </div>
         </div>
 
-        {results.results.map(license =>
+        {results.map(license =>
           <SearchResult license={license} key={license.id} />,
         )}
-
-        {results.resultCount >
-          results.results
-            .length /*&&
-          this.renderPagination(results)*/}
 
         <div className="p-a300">
           Not finding what you’re looking for? Try refining your search or{' '}

@@ -4,14 +4,11 @@ import React from 'react';
 import Link from 'next/link';
 import { observer } from 'mobx-react';
 
-import type Cart from '../store/Cart';
-
 type Props = {|
-  cart: Cart,
   link: 'lookup' | 'checkout',
 |};
 
-export default observer(function Nav({ cart, link }: Props) {
+export default observer(function Nav({ link }: Props) {
   let linkTitle;
   let linkPath;
 
@@ -36,9 +33,6 @@ export default observer(function Nav({ cart, link }: Props) {
         <Link href={linkPath}>
           <a className={'nv-s-l-b back-link'}>{linkTitle}</a>
         </Link>
-        <Link href="/dogs/checkout">
-          <a className="cart-link">{cart.size}</a>
-        </Link>
       </div>
 
       <style jsx>{`
@@ -52,7 +46,6 @@ export default observer(function Nav({ cart, link }: Props) {
         .back-link:after {
           display: none !important;
         }
-
         .cart-link {
           display: block;
           position: relative;

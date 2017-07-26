@@ -12,13 +12,13 @@ test('searchDogLicenses', async () => {
     },
   });
 
-  await searchDogLicenses(loopbackGraphql, 'Monkey Joe', 1, '1988', null);
+  await searchDogLicenses(loopbackGraphql, 'ALEX', 'SMITH', 'LUCY', 2016);
 
   const queryVariables: SearchDogLicensesQueryVariables = {
-    query: 'Monkey Joe',
-    page: 1,
-    startYear: '1988',
-    endYear: null,
+    firstName: 'ALEX',
+    lastName: 'SMITH',
+    dogName: 'LUCY',
+    year: 2016,
   };
 
   expect(loopbackGraphql).toHaveBeenCalledWith(

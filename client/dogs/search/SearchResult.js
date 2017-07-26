@@ -11,7 +11,7 @@ export type Props = {|
 |};
 
 export default function SearchResult({
-  license: { firstName, lastName, age, deathDate, deathYear, id, pending },
+  license: { firstName, lastName, dogName, id },
 }: Props) {
   return (
     <Link href={`/dogs/license?id=${id}`} as={`/dogs/license/${id}`}>
@@ -23,10 +23,8 @@ export default function SearchResult({
             fontWeight: 'bold',
             letterSpacing: 1.4,
           }}>
-          {firstName} {lastName}
+          {firstName} {lastName} {dogName} {id}
         </div>
-        <div>Died: {deathDate || deathYear} Age: {age}</div>
-        {pending && <div>License Pending</div>}
         <style jsx>{`
             .result {
               display: block;

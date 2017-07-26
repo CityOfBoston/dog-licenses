@@ -5,7 +5,6 @@ import type { Context } from 'next';
 import { useStrict } from 'mobx';
 import Router from 'next/router';
 
-import Cart from './store/Cart';
 import makeLoopbackGraphql from './loopback-graphql';
 import type { LoopbackGraphql } from './loopback-graphql';
 import type { RequestAdditions } from '../server/request-additions';
@@ -21,7 +20,6 @@ import RouterListener from './RouterListener';
 // statements are processed.
 
 export type ClientDependencies = {
-  cart: Cart,
   dogLicensesDao: DogLicensesDao,
   loopbackGraphql: LoopbackGraphql,
 };
@@ -50,13 +48,7 @@ function makeDependencies(req: ?RequestAdditions): ClientDependencies {
   const loopbackGraphql = makeLoopbackGraphql(req);
   const dogLicensesDao = new DogLicensesDao(loopbackGraphql);
 
-  const cart = new Cart();
-  if (process.browser) {
-    cart.attach(window.localStorage, dogLicensesDao);
-  }
-
   const dependencies: ClientDependencies = {
-    cart,
     dogLicensesDao,
     loopbackGraphql,
   };
