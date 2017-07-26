@@ -4,7 +4,7 @@ exports[`rendering renders a license without a death date 1`] = `
 <a
   className="p-a300 br br-t100 b--w result"
   data-jsx={1723197323}
-  href="/dogs/license/000003"
+  href="/dogs/license/000002"
   onClick={[Function]}
 >
   <div
@@ -18,17 +18,13 @@ exports[`rendering renders a license without a death date 1`] = `
       }
     }
   >
-    Monkey
+    Bruce
      
-    Joe
-  </div>
-  <div
-    data-jsx={1723197323}
-  >
-    Died: 
-    2004
-     Age: 
-    6
+    Banner
+     
+    Poppy
+     
+    000002
   </div>
 </a>
 `;
@@ -37,7 +33,7 @@ exports[`rendering renders a pending license 1`] = `
 <a
   className="p-a300 br br-t100 b--w result"
   data-jsx={1723197323}
-  href="/dogs/license/000001"
+  href="/dogs/license/000002"
   onClick={[Function]}
 >
   <div
@@ -51,22 +47,13 @@ exports[`rendering renders a pending license 1`] = `
       }
     }
   >
-    Logan
+    Bruce
      
-    Howlett
-  </div>
-  <div
-    data-jsx={1723197323}
-  >
-    Died: 
-    4/15/2014
-     Age: 
-    44 yrs. 2 mos. 10 dys
-  </div>
-  <div
-    data-jsx={1723197323}
-  >
-    License Pending
+    Banner
+     
+    Poppy
+     
+    000002
   </div>
 </a>
 `;
@@ -92,14 +79,10 @@ exports[`rendering renders a typical license 1`] = `
     Bruce
      
     Banner
-  </div>
-  <div
-    data-jsx={1723197323}
-  >
-    Died: 
-    3/4/2016
-     Age: 
-    21 yrs.
+     
+    Poppy
+     
+    000002
   </div>
 </a>
 `;

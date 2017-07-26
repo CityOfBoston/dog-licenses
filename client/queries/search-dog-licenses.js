@@ -13,16 +13,16 @@ import type { DogLicenseSearchResults } from '../types';
 // Search for dog licenses with a simple query
 export default async function searchDogLicenses(
   loopbackGraphql: LoopbackGraphql,
-  query: string,
-  page: number,
-  startYear: ?string,
-  endYear: ?string,
+  firstName: string,
+  lastName: string,
+  dogName: string,
+  year: number,
 ): Promise<DogLicenseSearchResults> {
   const queryVariables: SearchDogLicensesQueryVariables = {
-    query,
-    page,
-    startYear,
-    endYear,
+    firstName,
+    lastName,
+    dogName,
+    year,
   };
   const response: SearchDogLicensesQuery = await loopbackGraphql(
     SearchDogLicensesGraphql,

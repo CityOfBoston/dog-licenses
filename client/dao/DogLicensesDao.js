@@ -1,10 +1,8 @@
 // @flow
 
-import DataLoader from 'dataloader';
 import type { LoopbackGraphql } from '../loopback-graphql';
 import type { DogLicense } from '../types';
 
-import fetchDogLicenses from '../queries/fetch-dog-licenses';
 import searchDogLicenses from '../queries/search-dog-licenses';
 import type { DogLicenseSearchResults } from '../types';
 
@@ -12,38 +10,25 @@ export type DogLicenseCache = { [id: string]: DogLicense };
 
 export default class DogLicensesDao {
   loopbackGraphql: LoopbackGraphql;
-  loader: DataLoader<string, ?DogLicense>;
 
   constructor(loopbackGraphql: LoopbackGraphql) {
     this.loopbackGraphql = loopbackGraphql;
-
-    // create new array shenanigans to get Flow to accept that we're not returning Errors
-    this.loader = new DataLoader(ids =>
-      fetchDogLicenses(loopbackGraphql, ids).then(a => a.map(i => i)),
-    );
   }
-
-  get(id: string): Promise<?DogLicense> {
-    return this.loader.load(id);
-  }
-
   async search(
-    fullQuery: string,
-    page: number,
+    firstName: string,
+    lastName: string,
+    dogName: string,
+    year: number,
   ): Promise<DogLicenseSearchResults> {
-    const { query, startYear, endYear } = this.parseQuery(fullQuery);
+    //const { query, startYear, endYear } = this.parseQuery(fullQuery);
 
     const results = await searchDogLicenses(
       this.loopbackGraphql,
-      query,
-      page,
-      startYear,
-      endYear,
+      firstName,
+      lastName,
+      dogName,
+      year,
     );
-
-    results.results.forEach(cert => {
-      this.loader.prime(cert.id, cert);
-    });
 
     return results;
   }
