@@ -6,22 +6,22 @@ type DogLicense {
   personId: String!
   tagNo: String
   tagType: String
-  tagExp: Int
+  tagExp: String
   tagStat: String
-  vacDate: Int
-  vacTerm: Int
-  vacExp: Int
+  vacDate: String
+  vacTerm: String
+  vacExp: String
   userId: String
-  stamp: Int
-  jurisdiction: String
-  tagIdentity: Int
+  stamp: String
+  neighborhood: String
+  tagIdentity: String
   tagTail: String
   clerkid: String
   animalType: String
   sex: String
-  yearsOld: Int
-  monthsOld: Int
-  dob: Int
+  yearsOld: String
+  monthsOld: String
+  dob: String
   colorGroup: String
   priColor: String
   secColor: String
@@ -30,17 +30,18 @@ type DogLicense {
   secBreed: String
   animalCond: String
   animalStat: String
-  statusDate: Int
+  statusDate: String
   animalSize: String
-  streetNo: Int
+  streetNo: String
   streetName: String
   streetType: String
   apt: String
   city: String
   state: String
-  zipCode: String
+  zip: String
   areaCode: String
   phone: String
+  address: String
 }
 
 type DogLicenses {

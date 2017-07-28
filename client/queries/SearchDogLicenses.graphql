@@ -5,6 +5,17 @@ query SearchDogLicenses($firstName: String!, $lastName: String!, $dogName: Strin
       lastName
       dogName
       id
+      phone
+      sex
+      zip
+      address
+      monthsOld
+      yearsOld
+      priColor
+      priBreed
+      vacDate
+      vacExp
+      neighborhood
     }
   }
 }

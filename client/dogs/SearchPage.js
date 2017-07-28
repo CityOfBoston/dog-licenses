@@ -2,17 +2,8 @@
 
 import React from 'react';
 import Head from 'next/head';
-import type { Context } from 'next';
 
-import type { ClientDependencies } from '../page';
-
-import type { DogLicenseSearchResults } from '../types';
-
-import SearchResult from './search/SearchResult';
-
-export type InitialProps = {|
-  results: ?DogLicenseSearchResults,
-|};
+export type InitialProps = {||};
 
 export type Props = {
   ...InitialProps,
@@ -29,33 +20,8 @@ export default class IndexPage extends React.Component {
   props: Props;
   state: State;
 
-  static async getInitialProps(
-    ctx: Context<*>,
-    { dogLicensesDao }: ClientDependencies,
-  ): Promise<InitialProps> {
-    const { query } = ctx;
-
-    let results = null;
-    //console.log('QUERY', query);
-
-    if (query.firstName && query.lastName && query.dogName && query.year) {
-      results = await dogLicensesDao.search(
-        query.firstName,
-        query.lastName,
-        query.dogName,
-        parseInt(query.year, 10),
-      );
-      //console.log('Results', results);
-    }
-
-    return {
-      results,
-    };
-  }
-
   constructor(props: Props) {
     super(props);
-    //const { results } = props;
 
     this.state = {
       firstName: '',
@@ -73,8 +39,6 @@ export default class IndexPage extends React.Component {
   };
 
   render() {
-    const { results } = this.props;
-
     return (
       <div>
         <Head>
@@ -90,7 +54,7 @@ export default class IndexPage extends React.Component {
             className="sf sf--md"
             acceptCharset="UTF-8"
             method="get"
-            action="/dogs">
+            action="/dogs/form">
             <input name="utf8" type="hidden" value="✓" />
 
             <div className="txt">
@@ -136,6 +100,7 @@ export default class IndexPage extends React.Component {
               <label htmlFor="text" className="txt-l">Year licensed</label>
               <input
                 id="text"
+                type="text"
                 name="year"
                 value={this.state.year}
                 onChange={this.handleInputChange}
@@ -143,58 +108,12 @@ export default class IndexPage extends React.Component {
                 className="txt-f"
               />
             </div>
-            <div className="m-v400 m-h200">
-              <button className="btn" type="submit">Search for id</button>
-            </div>
+
+            <button className="btn" type="submit">Search for id</button>
 
           </form>
         </div>
-
-        {results && this.renderResults(results)}
         <div />
-      </div>
-    );
-  }
-
-  renderResults(results: DogLicenseSearchResults) {
-    // we want the query that was searched for
-    // const start = 1 + (results.page - 1) * results.pageSize;
-    // const end = Math.min(start + results.pageSize - 1, results.resultCount);
-
-    return (
-      <div>
-
-        <div className="p-a300 b--w">
-          <div className="t--sans tt-u" style={{ fontSize: 12 }}>
-            Showing results:
-          </div>
-        </div>
-
-        {results.map(license =>
-          <SearchResult license={license} key={license.id} />,
-        )}
-
-        <div className="p-a300">
-          Not finding what you’re looking for? Try refining your search or{' '}
-          <a
-            href="https://www.boston.gov/departments/registry/how-get-dog-license"
-            style={{ fontStyle: 'italic' }}>
-            request a dog license
-          </a>.
-        </div>
-
-        <form
-          className="sf sf--md"
-          acceptCharset="UTF-8"
-          method="get"
-          action="/dogs/form">
-          <input name="utf8" type="hidden" value="✓" />
-
-          <div className="m-v400 m-h200">
-            <button className="btn" type="submit">Renew This license</button>
-          </div>
-
-        </form>
       </div>
     );
   }
