@@ -18,13 +18,52 @@ exports[`rendering renders a license without a death date 1`] = `
       }
     }
   >
+    Name: 
     Bruce
      
     Banner
-     
+  </div>
+  <div
+    className="t--sans"
+    data-jsx={1723197323}
+    style={
+      Object {
+        "fontStyle": "normal",
+        "fontWeight": "bold",
+        "letterSpacing": 1.4,
+      }
+    }
+  >
+    Dog: 
     Poppy
-     
+  </div>
+  <div
+    className="t--sans"
+    data-jsx={1723197323}
+    style={
+      Object {
+        "fontStyle": "normal",
+        "fontWeight": "bold",
+        "letterSpacing": 1.4,
+      }
+    }
+  >
+    Dog ID: 
     000002
+  </div>
+  <div
+    className="t--sans"
+    data-jsx={1723197323}
+    style={
+      Object {
+        "fontStyle": "normal",
+        "fontWeight": "bold",
+        "letterSpacing": 1.4,
+      }
+    }
+  >
+    Phone: 
+    1234567890
   </div>
 </a>
 `;
@@ -47,13 +86,52 @@ exports[`rendering renders a pending license 1`] = `
       }
     }
   >
+    Name: 
     Bruce
      
     Banner
-     
+  </div>
+  <div
+    className="t--sans"
+    data-jsx={1723197323}
+    style={
+      Object {
+        "fontStyle": "normal",
+        "fontWeight": "bold",
+        "letterSpacing": 1.4,
+      }
+    }
+  >
+    Dog: 
     Poppy
-     
+  </div>
+  <div
+    className="t--sans"
+    data-jsx={1723197323}
+    style={
+      Object {
+        "fontStyle": "normal",
+        "fontWeight": "bold",
+        "letterSpacing": 1.4,
+      }
+    }
+  >
+    Dog ID: 
     000002
+  </div>
+  <div
+    className="t--sans"
+    data-jsx={1723197323}
+    style={
+      Object {
+        "fontStyle": "normal",
+        "fontWeight": "bold",
+        "letterSpacing": 1.4,
+      }
+    }
+  >
+    Phone: 
+    1234567890
   </div>
 </a>
 `;
@@ -76,13 +154,52 @@ exports[`rendering renders a typical license 1`] = `
       }
     }
   >
+    Name: 
     Bruce
      
     Banner
-     
+  </div>
+  <div
+    className="t--sans"
+    data-jsx={1723197323}
+    style={
+      Object {
+        "fontStyle": "normal",
+        "fontWeight": "bold",
+        "letterSpacing": 1.4,
+      }
+    }
+  >
+    Dog: 
     Poppy
-     
+  </div>
+  <div
+    className="t--sans"
+    data-jsx={1723197323}
+    style={
+      Object {
+        "fontStyle": "normal",
+        "fontWeight": "bold",
+        "letterSpacing": 1.4,
+      }
+    }
+  >
+    Dog ID: 
     000002
+  </div>
+  <div
+    className="t--sans"
+    data-jsx={1723197323}
+    style={
+      Object {
+        "fontStyle": "normal",
+        "fontWeight": "bold",
+        "letterSpacing": 1.4,
+      }
+    }
+  >
+    Phone: 
+    1234567890
   </div>
 </a>
 `;

@@ -13,7 +13,7 @@ export type InitialProps = {|
 |};
 
 export type Props = {
-  /* :: ...InitialProps, */
+  ...InitialProps,
 };
 
 type State = {
@@ -25,7 +25,8 @@ type State = {
   neighborhood: string,
   zip: string,
   dogName: string,
-  dogAge: string,
+  ageYears: string,
+  ageMonths: string,
   color: string,
   breed: string,
   sex: string,
@@ -45,7 +46,6 @@ export default class IndexPage extends React.Component {
     const { query } = ctx;
 
     let results = null;
-    //console.log('QUERY', query);
 
     if (query.firstName && query.lastName && query.dogName && query.year) {
       results = await dogLicensesDao.search(
@@ -54,7 +54,6 @@ export default class IndexPage extends React.Component {
         query.dogName,
         parseInt(query.year, 10),
       );
-      //console.log('Results', results);
     }
 
     return {
@@ -65,41 +64,58 @@ export default class IndexPage extends React.Component {
   constructor(props: Props) {
     super(props);
 
-    this.state = {
-      firstName: '',
-      lastName: '',
-      phone: '',
-      email: '',
-      address: '',
-      neighborhood: '',
-      zip: '',
-      dogName: '',
-      dogAge: '',
-      color: '',
-      breed: '',
-      sex: '',
-      rabiesIssued: '',
-      rabiesExpire: '',
-      comments: '',
-    };
+    if (props.results && props.results.length) {
+      const result = props.results[0];
+      this.state = {
+        firstName: result['firstName'] || '',
+        lastName: result['lastName'] || '',
+        phone: result['phone'] || '',
+        email: '',
+        address: result['address'] || '',
+        neighborhood: result['neighborhood'] || '',
+        zip: result['zip'] || '',
+        dogName: result['dogName'] || '',
+        ageYears: result['yearsOld'] || '',
+        ageMonths: result['monthsOld'] || '',
+        color: result['priColor'] || '',
+        breed: result['priBreed'] || '',
+        sex: result['sex'] || '',
+        rabiesIssued: result['vacDate'] || '',
+        rabiesExpire: result['vacExp'] || '',
+        comments: '',
+      };
+    } else {
+      this.state = {
+        firstName: '',
+        lastName: '',
+        phone: '',
+        email: '',
+        address: '',
+        neighborhood: '',
+        zip: '',
+        dogName: '',
+        ageYears: '',
+        ageMonths: '',
+        color: '',
+        breed: '',
+        sex: '',
+        rabiesIssued: '',
+        rabiesExpire: '',
+        comments: '',
+      };
+    }
   }
 
   handleInputChange = (ev: SyntheticInputEvent) => {
-    const target = ev.target;
-    const value = target.value;
-    const name = target.name;
+    const { value, name } = ev.target;
     this.setState({ [name]: value });
   };
 
   handleSubmit = (ev: SyntheticInputEvent) => {
     ev.preventDefault();
-    //Router.push(`/dogs?q=${encodeURIComponent(query)}`);
   };
 
   render() {
-    // const {
-    //   /*results,*/
-    // } = this.props;
     return (
       <div>
         <Head>
@@ -168,6 +184,7 @@ export default class IndexPage extends React.Component {
               <label htmlFor="lookup-email" className="txt-l">Email</label>
               <input
                 id="lookup-email"
+                type="text"
                 name="email"
                 value={this.state.email}
                 onChange={this.handleInputChange}
@@ -180,6 +197,7 @@ export default class IndexPage extends React.Component {
               <label htmlFor="lookup-address" className="txt-l">Address</label>
               <input
                 id="lookup-address"
+                type="text"
                 name="address"
                 value={this.state.address}
                 onChange={this.handleInputChange}
@@ -188,33 +206,39 @@ export default class IndexPage extends React.Component {
               />
             </div>
 
-            <div className="sel">
-              <label htmlFor="lookup-neighborhood" className="sel-l">
-                Neighborhood
-              </label>
-              <div className="sel-c">
-                <select
-                  name="neighborhood"
-                  value={this.state.neighborhood}
-                  id="lookup-neighborhood"
-                  className="sel-f">
-                  <option value="Allston">Allston</option>
-                  <option value="Back Bay">Back Bay</option>
-                  <option value="Beacon Hill">Beacon Hill</option>
-                  <option value="Boston">Boston</option>
-                  <option value="Brighton">Brighton</option>
-                  <option value="Charleston">Charleston</option>
-                  <option value="Dorchester">Dorchester</option>
-                  <option value="East Boston">East Boston</option>
-                  <option value="Hyde Park">Hyde Park</option>
-                  <option value="Jamaica Plain">Jamaica Plain</option>
-                  <option value="Mattapan">Mattapan</option>
-                  <option value="Readville">Readville</option>
-                  <option value="Roslindale">Roslindale</option>
-                  <option value="Roxbury">Roxbury</option>
-                  <option value="South Boston">South Boston</option>
-                  <option value="West Roxbury">West Roxbury</option>
-                </select>
+            <div className="fs-c m-b300">
+              <div className="sel">
+                <label
+                  htmlFor="lookup-neighborhood"
+                  className="sel-l sel-l--mt000">
+                  Neighborhood
+                </label>
+                <div className="sel-c sel-c--fw">
+                  <select
+                    name="neighborhood"
+                    type="select"
+                    onChange={this.handleInputChange}
+                    value={this.state.neighborhood}
+                    id="lookup-neighborhood"
+                    className="sel-f">
+                    <option value="Allston">Allston</option>
+                    <option value="Back Bay">Back Bay</option>
+                    <option value="Beacon Hill">Beacon Hill</option>
+                    <option value="Boston">Boston</option>
+                    <option value="Brighton">Brighton</option>
+                    <option value="Charleston">Charleston</option>
+                    <option value="Dorchester">Dorchester</option>
+                    <option value="East Boston">East Boston</option>
+                    <option value="Hyde Park">Hyde Park</option>
+                    <option value="Jamaica Plain">Jamaica Plain</option>
+                    <option value="Mattapan">Mattapan</option>
+                    <option value="Readville">Readville</option>
+                    <option value="Roslindale">Roslindale</option>
+                    <option value="Roxbury">Roxbury</option>
+                    <option value="South Boston">South Boston</option>
+                    <option value="West Roxbury">West Roxbury</option>
+                  </select>
+                </div>
               </div>
             </div>
 
@@ -222,6 +246,7 @@ export default class IndexPage extends React.Component {
               <label htmlFor="lookup-zip" className="txt-l">Zip Code</label>
               <input
                 id="lookup-zip"
+                type="text"
                 name="zip"
                 value={this.state.zip}
                 onChange={this.handleInputChange}
@@ -234,6 +259,7 @@ export default class IndexPage extends React.Component {
               <label htmlFor="lookup-dogName" className="txt-l">Dog Name</label>
               <input
                 id="lookup-dogName"
+                type="text"
                 name="dogName"
                 value={this.state.dogName}
                 onChange={this.handleInputChange}
@@ -243,82 +269,111 @@ export default class IndexPage extends React.Component {
             </div>
 
             <div className="txt">
-              <label htmlFor="lookup-dogAge" className="txt-l">
+              <label htmlFor="lookup-dogYear" className="txt-l">
                 Dog Age (Years)
               </label>
               <input
-                id="lookup-dogAge"
-                name="dogAge"
-                value={this.state.dogAge}
+                id="lookup-dogYear"
+                type="text"
+                name="dogYear"
+                value={this.state.ageYears}
                 onChange={this.handleInputChange}
                 placeholder="2, 0.5, 17..."
                 className="txt-f"
               />
             </div>
 
-            <div className="sel">
-              <label htmlFor="lookup-breed" className="sel-l">
-                Dog Breed
+            <div className="txt">
+              <label htmlFor="lookup-dogMo" className="txt-l">
+                Dog Age (Months)
               </label>
-              <div className="sel-c">
-                <select
-                  name="breed"
-                  id="lookup-breed"
-                  value={this.state.breed}
-                  className="sel-f">
-                  <option value="Alaskan Malamute">Alaskan Malamute</option>
-                  <option value="Alaskan Husky">Alaskan Husky</option>
-                  <option value="Pit Bull Terrier">Pit Bull Terrier</option>
-                  <option value="Bulldog">Bulldog</option>
-                  <option value="Australian Shephard">
-                    Australian Shephard
-                  </option>
-                  <option value="Basset Hound">Basset Hound</option>
-                  <option value="Italian Greyhound">Italian Greyhound</option>
-                  <option value="Otterhound">Otterhound</option>
-                  <option value="Pharoah Hound">Pharoah Hound</option>
-                  <option value="Plott Hound">Plott Hound</option>
-                  <option value="Portuguese Water Dog">
-                    Portuguese Water Dog
-                  </option>
-                  <option value="Whippet">Whippet</option>
-                </select>
+              <input
+                id="lookup-dogMo"
+                type="text"
+                name="dogMo"
+                value={this.state.ageMonths}
+                onChange={this.handleInputChange}
+                placeholder="2, 0.5, 17..."
+                className="txt-f"
+              />
+            </div>
+
+            <div className="fs-c m-b300">
+              <div className="sel">
+                <label htmlFor="lookup-breed" className="sel-l sel-l--mt000">
+                  Primary Breed
+                </label>
+                <div className="sel-c sel-c--fw">
+                  <select
+                    name="breed"
+                    id="lookup-breed"
+                    onChange={this.handleInputChange}
+                    value={this.state.breed}
+                    className="sel-f">
+                    <option value="Alaskan Malamute">Alaskan Malamute</option>
+                    <option value="Alaskan Husky">Alaskan Husky</option>
+                    <option value="Pit Bull Terrier">Pit Bull Terrier</option>
+                    <option value="Bulldog">Bulldog</option>
+                    <option value="Australian Shephard">
+                      Australian Shephard
+                    </option>
+                    <option value="Basset Hound">Basset Hound</option>
+                    <option value="Italian Greyhound">Italian Greyhound</option>
+                    <option value="Otterhound">Otterhound</option>
+                    <option value="Pharoah Hound">Pharoah Hound</option>
+                    <option value="Plott Hound">Plott Hound</option>
+                    <option value="Portuguese Water Dog">
+                      Portuguese Water Dog
+                    </option>
+                    <option value="Whippet">Whippet</option>
+                  </select>
+                </div>
               </div>
             </div>
 
-            <div className="sel">
-              <label htmlFor="lookup-color" className="sel-l">
-                Primary Dog Color
-              </label>
-              <div className="sel-c">
-                <select
-                  name="color"
-                  id="lookup-color"
-                  value={this.state.color}
-                  className="sel-f">
-                  <option value="Black">Black</option>
-                  <option value="Brown">Brown</option>
-                  <option value="Tan">Tan</option>
-                  <option value="White">White</option>
-                  <option selected value="Red-Brown">Red-Brown</option>
-                  <option value="Grey">Grey</option>
-                </select>
+            <div className="fs-c m-b300">
+              <div className="sel">
+                <label htmlFor="lookup-bolor" className="sel-l sel-l--mt000">
+                  Primary Color
+                </label>
+                <div className="sel-c sel-c--fw">
+                  <select
+                    name="color"
+                    id="lookup-color"
+                    type="text"
+                    onChange={this.handleInputChange}
+                    value={this.state.color}
+                    className="sel-f">
+                    <option value="Black">Black</option>
+                    <option value="Brown">Brown</option>
+                    <option value="Tan">Tan</option>
+                    <option value="White">White</option>
+                    <option selected value="Red-Brown">Red-Brown</option>
+                    <option value="Grey">Grey</option>
+                  </select>
+                </div>
               </div>
             </div>
 
-            <div className="sel">
-              <label htmlFor="lookup-sex" className="sel-l">
-                Dog Sex
-              </label>
-              <div className="sel-c">
-                <select
-                  name="sex"
-                  id="lookup-sex"
-                  value={this.state.sex}
-                  className="sel-f">
-                  <option value="Female">Female</option>
-                  <option value="Male">Male</option>
-                </select>
+            <div className="fs-c m-b300">
+              <div className="sel">
+                <label htmlFor="lookup-sex" className="sel-l sel-l--mt000">
+                  Sex
+                </label>
+                <div className="sel-c sel-c--fw">
+                  <select
+                    name="sex"
+                    type="text"
+                    id="lookup-sex"
+                    onChange={this.handleInputChange}
+                    value={this.state.sex}
+                    className="sel-f">
+                    <option value="Female">Spayed Female ($15)</option>
+                    <option value="Female">Un=spayed Female ($30)</option>
+                    <option value="Male">Neutered Male ($15)</option>
+                    <option value="Male">Un-neutered Male ($30)</option>
+                  </select>
+                </div>
               </div>
             </div>
 
@@ -328,6 +383,7 @@ export default class IndexPage extends React.Component {
               </label>
               <input
                 id="lookup-rabiesIssue"
+                type="text"
                 name="rabiesIssued"
                 value={this.state.rabiesIssued}
                 onChange={this.handleInputChange}
@@ -342,6 +398,7 @@ export default class IndexPage extends React.Component {
               </label>
               <input
                 id="lookup-rabiesExpire"
+                type="text"
                 name="rabiesExpire"
                 value={this.state.rabiesExpire}
                 onChange={this.handleInputChange}
@@ -362,9 +419,7 @@ export default class IndexPage extends React.Component {
               />
             </div>
 
-            <div className="m-v400 m-h200">
-              <button className="btn" type="submit">Payment</button>
-            </div>
+            <button className="btn" type="submit">Payment</button>
 
           </form>
         </div>

@@ -16,7 +16,7 @@ exports[`rendering shows empty search box 1`] = `
     </div>
     <form
       acceptCharset="UTF-8"
-      action="/dogs"
+      action="/dogs/form"
       className="sf sf--md"
       method="get"
     >
@@ -97,19 +97,16 @@ exports[`rendering shows empty search box 1`] = `
           name="year"
           onChange={[Function]}
           placeholder="2016"
+          type="text"
           value=""
         />
       </div>
-      <div
-        className="m-v400 m-h200"
+      <button
+        className="btn"
+        type="submit"
       >
-        <button
-          className="btn"
-          type="submit"
-        >
-          Search for id
-        </button>
-      </div>
+        Search for id
+      </button>
     </form>
   </div>
   <div />
