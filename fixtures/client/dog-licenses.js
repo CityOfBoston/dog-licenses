@@ -7,6 +7,17 @@ export const TYPICAL_LICENSE: DogLicense = {
   firstName: 'Bruce',
   lastName: 'Banner',
   dogName: 'Poppy',
+  phone: '1234567890',
+  sex: 'F',
+  zip: '12345',
+  address: '12 Baker ST',
+  monthsOld: '2',
+  yearsOld: '3',
+  priColor: 'Brown',
+  priBreed: 'Terrier',
+  vacDate: '10/12/14',
+  vacExp: '10/12/17',
+  neighborhood: 'Brighton',
 };
 
 export const PENDING_LICENSE: DogLicense = {
@@ -14,6 +25,17 @@ export const PENDING_LICENSE: DogLicense = {
   firstName: 'Bruce',
   lastName: 'Banner',
   dogName: 'Poppy',
+  phone: '1234567890',
+  sex: 'F',
+  zip: '12345',
+  address: '12 Baker ST',
+  monthsOld: '2',
+  yearsOld: '3',
+  priColor: 'Brown',
+  priBreed: 'Terrier',
+  vacDate: '10/12/14',
+  vacExp: '10/12/17',
+  neighborhood: 'Brighton',
 };
 
 export const NO_DATE_LICENSE: DogLicense = {
@@ -21,4 +43,15 @@ export const NO_DATE_LICENSE: DogLicense = {
   firstName: 'Bruce',
   lastName: 'Banner',
   dogName: 'Poppy',
+  phone: '1234567890',
+  sex: 'F',
+  zip: '12345',
+  address: '12 Baker ST',
+  monthsOld: '2',
+  yearsOld: '3',
+  priColor: 'Brown',
+  priBreed: 'Terrier',
+  vacDate: '10/12/14',
+  vacExp: '10/12/17',
+  neighborhood: 'Brighton',
 };

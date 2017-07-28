@@ -11,7 +11,7 @@ export type Props = {|
 |};
 
 export default function SearchResult({
-  license: { firstName, lastName, dogName, id },
+  license: { firstName, lastName, dogName, id, phone },
 }: Props) {
   return (
     <Link href={`/dogs/license?id=${id}`} as={`/dogs/license/${id}`}>
@@ -23,7 +23,34 @@ export default function SearchResult({
             fontWeight: 'bold',
             letterSpacing: 1.4,
           }}>
-          {firstName} {lastName} {dogName} {id}
+          Name: {firstName} {lastName}
+        </div>
+        <div
+          className="t--sans"
+          style={{
+            fontStyle: 'normal',
+            fontWeight: 'bold',
+            letterSpacing: 1.4,
+          }}>
+          Dog: {dogName}
+        </div>
+        <div
+          className="t--sans"
+          style={{
+            fontStyle: 'normal',
+            fontWeight: 'bold',
+            letterSpacing: 1.4,
+          }}>
+          Dog ID: {id}
+        </div>
+        <div
+          className="t--sans"
+          style={{
+            fontStyle: 'normal',
+            fontWeight: 'bold',
+            letterSpacing: 1.4,
+          }}>
+          Phone: {phone}
         </div>
         <style jsx>{`
             .result {

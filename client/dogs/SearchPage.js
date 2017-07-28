@@ -36,8 +36,8 @@ export default class IndexPage extends React.Component {
     const { query } = ctx;
 
     let results = null;
-    //console.log('QUERY', query);
 
+    //THIS SEARCH FUNCTION IS NOT BEING USED NOW
     if (query.firstName && query.lastName && query.dogName && query.year) {
       results = await dogLicensesDao.search(
         query.firstName,
@@ -45,7 +45,7 @@ export default class IndexPage extends React.Component {
         query.dogName,
         parseInt(query.year, 10),
       );
-      //console.log('Results', results);
+      console.log('SearchPage: ', results);
     }
 
     return {
@@ -90,7 +90,7 @@ export default class IndexPage extends React.Component {
             className="sf sf--md"
             acceptCharset="UTF-8"
             method="get"
-            action="/dogs">
+            action="/dogs/form">
             <input name="utf8" type="hidden" value="✓" />
 
             <div className="txt">
@@ -136,6 +136,7 @@ export default class IndexPage extends React.Component {
               <label htmlFor="text" className="txt-l">Year licensed</label>
               <input
                 id="text"
+                type="text"
                 name="year"
                 value={this.state.year}
                 onChange={this.handleInputChange}
@@ -143,9 +144,8 @@ export default class IndexPage extends React.Component {
                 className="txt-f"
               />
             </div>
-            <div className="m-v400 m-h200">
-              <button className="btn" type="submit">Search for id</button>
-            </div>
+
+            <button className="btn" type="submit">Search for id</button>
 
           </form>
         </div>
