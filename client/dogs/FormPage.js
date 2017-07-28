@@ -269,13 +269,13 @@ export default class IndexPage extends React.Component {
             </div>
 
             <div className="txt">
-              <label htmlFor="lookup-dogYear" className="txt-l">
+              <label htmlFor="lookup-ageYears" className="txt-l">
                 Dog Age (Years)
               </label>
               <input
-                id="lookup-dogYear"
+                id="lookup-ageYears"
                 type="text"
-                name="dogYear"
+                name="ageYears"
                 value={this.state.ageYears}
                 onChange={this.handleInputChange}
                 placeholder="2, 0.5, 17..."
@@ -284,13 +284,13 @@ export default class IndexPage extends React.Component {
             </div>
 
             <div className="txt">
-              <label htmlFor="lookup-dogMo" className="txt-l">
+              <label htmlFor="lookup-ageMonths" className="txt-l">
                 Dog Age (Months)
               </label>
               <input
-                id="lookup-dogMo"
+                id="lookup-ageMonths"
                 type="text"
-                name="dogMo"
+                name="ageMonths"
                 value={this.state.ageMonths}
                 onChange={this.handleInputChange}
                 placeholder="2, 0.5, 17..."
