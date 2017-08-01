@@ -20,8 +20,6 @@ export default class DogLicensesDao {
     dogName: string,
     year: number,
   ): Promise<DogLicenseSearchResults> {
-    //const { query, startYear, endYear } = this.parseQuery(fullQuery);
-
     const results = await searchDogLicenses(
       this.loopbackGraphql,
       firstName,

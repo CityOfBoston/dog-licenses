@@ -18,6 +18,8 @@ export const TYPICAL_LICENSE: DogLicense = {
   vacDate: '10/12/14',
   vacExp: '10/12/17',
   neighborhood: 'Brighton',
+  email: 'wow@gmail.com',
+  apt: '21A',
 };
 
 export const PENDING_LICENSE: DogLicense = {
@@ -36,6 +38,8 @@ export const PENDING_LICENSE: DogLicense = {
   vacDate: '10/12/14',
   vacExp: '10/12/17',
   neighborhood: 'Brighton',
+  email: 'wow@gmail.com',
+  apt: '21A',
 };
 
 export const NO_DATE_LICENSE: DogLicense = {
@@ -54,4 +58,6 @@ export const NO_DATE_LICENSE: DogLicense = {
   vacDate: '10/12/14',
   vacExp: '10/12/17',
   neighborhood: 'Brighton',
+  email: 'wow@gmail.com',
+  apt: '21A',
 };
