@@ -26,6 +26,8 @@ export type SearchDogLicensesQuery = {|
       vacDate: ?string,
       vacExp: ?string,
       neighborhood: ?string,
+      email: ?string,
+      apt: ?string,
     |} >,
   |},
 |};

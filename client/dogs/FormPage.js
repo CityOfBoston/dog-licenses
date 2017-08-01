@@ -8,6 +8,280 @@ import type { DogLicenseSearchResults } from '../types';
 
 import SearchResult from './search/SearchResult';
 
+const COLORS = {
+  Unknown: 'Unknown',
+  OTHER: 'OTHER',
+  AGOUTI: 'AGOUTI',
+  APRICOT: 'APRICOT',
+  'BL BRINDLE': 'BL BRINDLE',
+  BLACK: 'BLACK',
+  'BLK SMOKE': 'BLK SMOKE',
+  BLUE: 'BLUE',
+  'BLUE MERLE': 'BLUE MERLE',
+  'BLUE PT': 'BLUE PT',
+  'BLUE TICK': 'BLUE TICK',
+  'BLUE TIGER': 'BLUE TIGER',
+  'BR BRINDLE': 'BR BRINDLE',
+  'BRN MERLE': 'BRN MERLE',
+  BROWN: 'BROWN',
+  BUFF: 'BUFF',
+  CHOCOLATE: 'CHOCOLATE',
+  CREAM: 'CREAM',
+  FAWN: 'FAWN',
+  GOLD: 'GOLD',
+  GRAY: 'GRAY',
+  GREEN: 'GREEN',
+  'LILAC PT': 'LILAC PT',
+  LIVER: 'LIVER',
+  'LIVER TICK': 'LIVER TICK',
+  ORANGE: 'ORANGE',
+  'ORANGE TIGER': 'ORANGE TIGER',
+  PINK: 'PINK',
+  PURPLE: 'PURPLE',
+  RED: 'RED',
+  'RED MERLE': 'RED MERLE',
+  'RED TICK': 'RED TICK',
+  MUDDLE: 'MUDDLE',
+  SABLE: 'SABLE',
+  'SEAL PT': 'SEAL PT',
+  SILVER: 'SILVER',
+  TAN: 'TAN',
+  TORTIE: 'TORTIE',
+  TRICOLOR: 'TRICOLOR',
+  WHITE: 'WHITE',
+  'Y BRINDLE': 'Y BRINDLE',
+  YELLOW: 'YELLOW',
+};
+
+const BREEDS = {
+  'BOYKIN SPAN': 'BOYKIN SPAN',
+  'CAIRN TERRIER': 'CAIRN TERRIER',
+  UNKNOWN: 'UNKNOWN',
+  'BULL TERRIER': 'BULL TERRIER',
+  BEAUCERON: 'BEAUCERON',
+  'BELG MALINOIS': 'BELG MALINOIS',
+  'IBIZAN HOUND': 'IBIZAN HOUND',
+  'FRENCH BULLDOG': 'FRENCH BULLDOG',
+  'QUEENSLAND HEEL': 'QUEENSLAND HEEL',
+  BENGAL: 'BENGAL',
+  'GERM SH POINT': 'GERM SH POINT',
+  'KARELIAN BEAR': 'KARELIAN BEAR',
+  'ENG BULLDOG': 'ENG BULLDOG',
+  LANDSEER: 'LANDSEER',
+  VIZSLA: 'VIZSLA',
+  'COCKER SPAN': 'COCKER SPAN',
+  'SCHNAUZER MIN': 'SCHNAUZER MIN',
+  'MEX HAIRLESS': 'MEX HAIRLESS',
+  'ITAL GREYHOUND': 'ITAL GREYHOUND',
+  'PORT WATER DOG': 'PORT WATER DOG',
+  'SEALYHAM TERR': 'SEALYHAM TERR',
+  'ST BERNARD SMTH': 'ST BERNARD SMTH',
+  'PLOTT HOUND': 'PLOTT HOUND',
+  OTTERHOUND: 'OTTERHOUND',
+  'SHETLD SHEEPDOG': 'SHETLD SHEEPDOG',
+  'FOX TERR WIRE': 'FOX TERR WIRE',
+  BRIARD: 'BRIARD',
+  'NORWICH TERRIER': 'NORWICH TERRIER',
+  GREYHOUND: 'GREYHOUND',
+  'CAVALIER SPAN': 'CAVALIER SPAN',
+  'GERM SHEPHERD': 'GERM SHEPHERD',
+  'SPAN WATER DOG': 'SPAN WATER DOG',
+  'WH PT GRIFFON': 'WH PT GRIFFON',
+  'LHASA APSO': 'LHASA APSO',
+  'MANCHESTER TERR': 'MANCHESTER TERR',
+  'RAT TERRIER': 'RAT TERRIER',
+  'CHESA BAY RETR': 'CHESA BAY RETR',
+  'SCHNAUZER GIANT': 'SCHNAUZER GIANT',
+  'BLUETICK HOUND': 'BLUETICK HOUND',
+  AKITA: 'AKITA',
+  HARRIER: 'HARRIER',
+  'PHARAOH HOUND': 'PHARAOH HOUND',
+  'AMER BULLDOG': 'AMER BULLDOG',
+  'SHIBA INU': 'SHIBA INU',
+  'GORDON SETTER': 'GORDON SETTER',
+  'COLLIE SMOOTH': 'COLLIE SMOOTH',
+  'AMER ESKIMO': 'AMER ESKIMO',
+  'ENG SPRNGR SPAN': 'ENG SPRNGR SPAN',
+  BULLMASTIFF: 'BULLMASTIFF',
+  LOWCHEN: 'LOWCHEN',
+  'SPINONE ITAL': 'SPINONE ITAL',
+  'MAINE COON': 'MAINE COON',
+  'GREAT DANE': 'GREAT DANE',
+  'BRUSS GRIFFON': 'BRUSS GRIFFON',
+  MALTESE: 'MALTESE',
+  'WEST HIGHLAND': 'WEST HIGHLAND',
+  'TR WALKER HOUND': 'TR WALKER HOUND',
+  TOSA: 'TOSA',
+  'AMER FOXHOUND': 'AMER FOXHOUND',
+  'TIBETAN SPAN': 'TIBETAN SPAN',
+  PAPILLON: 'PAPILLON',
+  RAGDOLL: 'RAGDOLL',
+  'OLD ENG BULLDOG': 'OLD ENG BULLDOG',
+  LEONBERGER: 'LEONBERGER',
+  'GR SWISS MTN': 'GR SWISS MTN',
+  'DUTCH SHEEPDOG': 'DUTCH SHEEPDOG',
+  'BICHON FRISE': 'BICHON FRISE',
+  'TIBETAN MASTIFF': 'TIBETAN MASTIFF',
+  HAVANESE: 'HAVANESE',
+  'MIN PINSCHER': 'MIN PINSCHER',
+  'DOMESTIC LH': 'DOMESTIC LH',
+  HIMALAYAN: 'HIMALAYAN',
+  'POODLE STND': 'POODLE STND',
+  'FOX TERR SMOOTH': 'FOX TERR SMOOTH',
+  'DOGUE DE BORDX': 'DOGUE DE BORDX',
+  'LABRADOR RETR': 'LABRADOR RETR',
+  'NS DUCK TOLLING': 'NS DUCK TOLLING',
+  'BELG TERVUREN': 'BELG TERVUREN',
+  'WELSH TERRIER': 'WELSH TERRIER',
+  'JAPANESE CHIN': 'JAPANESE CHIN',
+  HOVAWART: 'HOVAWART',
+  'IRISH WATR SPAN': 'IRISH WATR SPAN',
+  'BLACK/TAN HOUND': 'BLACK/TAN HOUND',
+  BRITTANY: 'BRITTANY',
+  'SILKY TERRIER': 'SILKY TERRIER',
+  STAFFORDSHIRE: 'STAFFORDSHIRE',
+  'SIBERIAN HUSKY': 'SIBERIAN HUSKY',
+  'CHIHUAHUA LH': 'CHIHUAHUA LH',
+  'BULL TERR MIN': 'BULL TERR MIN',
+  ROTTWEILER: 'ROTTWEILER',
+  'AMERICAN STAFF': 'AMERICAN STAFF',
+  'BL RUSSIAN TER': 'BL RUSSIAN TER',
+  KUVASZ: 'KUVASZ',
+  'KERRY BLUE TERR': 'KERRY BLUE TERR',
+  BASENJI: 'BASENJI',
+  'PIT BULL': 'PIT BULL',
+  POMERANIAN: 'POMERANIAN',
+  'SUSSEX SPAN': 'SUSSEX SPAN',
+  BAT: 'BAT',
+  'ALASK KLEE KAI': 'ALASK KLEE KAI',
+  'NORW ELKHOUND': 'NORW ELKHOUND',
+  CONURE: 'CONURE',
+  BEAGLE: 'BEAGLE',
+  'ENG COCKER SPAN': 'ENG COCKER SPAN',
+  'POODLE TOY': 'POODLE TOY',
+  'ENG POINTER': 'ENG POINTER',
+  'ENG FOXHOUND': 'ENG FOXHOUND',
+  SIAMESE: 'SIAMESE',
+  'BASSET HOUND': 'BASSET HOUND',
+  'IRISH TERRIER': 'IRISH TERRIER',
+  'SCOT TERRIER': 'SCOT TERRIER',
+  'DACHSHUND LH': 'DACHSHUND LH',
+  'DUTCH SHEPHERD': 'DUTCH SHEPHERD',
+  BORZOI: 'BORZOI',
+  'AMER SH': 'AMER SH',
+  'ALASKAN HUSKY': 'ALASKAN HUSKY',
+  'ALASK MALAMUTE': 'ALASK MALAMUTE',
+  'BELG SHEEPDOG': 'BELG SHEEPDOG',
+  'SC WHEAT TERR': 'SC WHEAT TERR',
+  'IRISH SETTER': 'IRISH SETTER',
+  'ENG SETTER': 'ENG SETTER',
+  'GLEN OF IMAAL': 'GLEN OF IMAAL',
+  KOMONDOR: 'KOMONDOR',
+  'POODLE MIN': 'POODLE MIN',
+  'BEDLINGTON TERR': 'BEDLINGTON TERR',
+  'SCOTTISH FOLD': 'SCOTTISH FOLD',
+  'BOUV FLANDRES': 'BOUV FLANDRES',
+  'GERM WH POINT': 'GERM WH POINT',
+  'FIELD SPANIEL': 'FIELD SPANIEL',
+  'CHINESE CRESTED': 'CHINESE CRESTED',
+  'AM PIT BULL TER': 'AM PIT BULL TER',
+  PUG: 'PUG',
+  AFFENPINSCHER: 'AFFENPINSCHER',
+  'WELSH SPR SPAN': 'WELSH SPR SPAN',
+  'BLACK MOUTH CUR': 'BLACK MOUTH CUR',
+  'SHIH TZU': 'SHIH TZU',
+  BULLDOG: 'BULLDOG',
+  'SCHNAUZER STAND': 'SCHNAUZER STAND',
+  AKBASH: 'AKBASH',
+  FEIST: 'FEIST',
+  POINTER: 'POINTER',
+  'SWED VALLHUND': 'SWED VALLHUND',
+  'ENG TOY SPANIEL': 'ENG TOY SPANIEL',
+  'DACHSHUND WH': 'DACHSHUND WH',
+  'PATTERDALE TERR': 'PATTERDALE TERR',
+  'REDBONE HOUND': 'REDBONE HOUND',
+  BLOODHOUND: 'BLOODHOUND',
+  BOERBOEL: 'BOERBOEL',
+  'ENG COONHOUND': 'ENG COONHOUND',
+  'WELSH CORGI CAR': 'WELSH CORGI CAR',
+  'RUSSIAN BLUE': 'RUSSIAN BLUE',
+  'POLISH LOWLAND': 'POLISH LOWLAND',
+  'DOMESTIC MH': 'DOMESTIC MH',
+  JINDO: 'JINDO',
+  'SWISS HOUND': 'SWISS HOUND',
+  'LAKELAND TERR': 'LAKELAND TERR',
+  'RHOD RIDGEBACK': 'RHOD RIDGEBACK',
+  'BORDER COLLIE': 'BORDER COLLIE',
+  'COTON DE TULEAR': 'COTON DE TULEAR',
+  'TOY FOX TERRIER': 'TOY FOX TERRIER',
+  'AIREDALE TERR': 'AIREDALE TERR',
+  'SCOT DEERHOUND': 'SCOT DEERHOUND',
+  SALUKI: 'SALUKI',
+  'FLAT COAT RETR': 'FLAT COAT RETR',
+  SAMOYED: 'SAMOYED',
+  BOXER: 'BOXER',
+  'CAROLINA DOG': 'CAROLINA DOG',
+  PBGV: 'PBGV',
+  'PARSON RUSS TER': 'PARSON RUSS TER',
+  GBGV: 'GBGV',
+  PERSIAN: 'PERSIAN',
+  'ST BERNARD RGH': 'ST BERNARD RGH',
+  'NORFOLK TERRIER': 'NORFOLK TERRIER',
+  DACHSHUND: 'DACHSHUND',
+  'ENG SHEPHERD': 'ENG SHEPHERD',
+  'TREEING CUR': 'TREEING CUR',
+  'DOBERMAN PINSCH': 'DOBERMAN PINSCH',
+  'AUST TERRIER': 'AUST TERRIER',
+  MASTIFF: 'MASTIFF',
+  'AUST CATTLE DOG': 'AUST CATTLE DOG',
+  'GOLDEN RETR': 'GOLDEN RETR',
+  'BERNESE MTN DOG': 'BERNESE MTN DOG',
+  SCHIPPERKE: 'SCHIPPERKE',
+  'FINNISH SPITZ': 'FINNISH SPITZ',
+  'AUST SHEPHERD': 'AUST SHEPHERD',
+  'IRISH WOLFHOUND': 'IRISH WOLFHOUND',
+  'BORDER TERRIER': 'BORDER TERRIER',
+  'AFGHAN HOUND': 'AFGHAN HOUND',
+  'BEARDED COLLIE': 'BEARDED COLLIE',
+  NEWFOUNDLAND: 'NEWFOUNDLAND',
+  'COLLIE ROUGH': 'COLLIE ROUGH',
+  'TENN TR BRINDLE': 'TENN TR BRINDLE',
+  'WELSH CORGI PEM': 'WELSH CORGI PEM',
+  WEIMARANER: 'WEIMARANER',
+  'GERMAN PINSCHER': 'GERMAN PINSCHER',
+  'OLDENG SHEEPDOG': 'OLDENG SHEEPDOG',
+  MUNSTERLANDER: 'MUNSTERLANDER',
+  'DOGO ARGENTINO': 'DOGO ARGENTINO',
+  PEKINGESE: 'PEKINGESE',
+  'YORKSHIRE TERR': 'YORKSHIRE TERR',
+  'AUST KELPIE': 'AUST KELPIE',
+  'CHIHUAHUA SH': 'CHIHUAHUA SH',
+  'CURLYCOAT RETR': 'CURLYCOAT RETR',
+  WHIPPET: 'WHIPPET',
+  'NORW BUHUND': 'NORW BUHUND',
+  'DOMESTIC SH': 'DOMESTIC SH',
+  'CLUMBER SPAN': 'CLUMBER SPAN',
+  'PRESA CANARIO': 'PRESA CANARIO',
+  ENTLEBUCHER: 'ENTLEBUCHER',
+  'NEAPOLITAN MAST': 'NEAPOLITAN MAST',
+  DALMATIAN: 'DALMATIAN',
+  'CHINESE SHARPEI': 'CHINESE SHARPEI',
+  'CANE CORSO': 'CANE CORSO',
+  'GREAT PYRENEES': 'GREAT PYRENEES',
+  'CHOW CHOW': 'CHOW CHOW',
+  KEESHOND: 'KEESHOND',
+  'BOSTON TERRIER': 'BOSTON TERRIER',
+  'AMER WATER SPAN': 'AMER WATER SPAN',
+  'DANDIE DINMONT': 'DANDIE DINMONT',
+  CATAHOULA: 'CATAHOULA',
+  'CANAAN DOG': 'CANAAN DOG',
+  'TIBETAN TERR': 'TIBETAN TERR',
+  EURASIER: 'EURASIER',
+  'PODENGO PEQUENO': 'PODENGO PEQUENO',
+  PULI: 'PULI',
+  'ANATOL SHEPHERD': 'ANATOL SHEPHERD',
+};
+
 export type InitialProps = {|
   results: ?DogLicenseSearchResults,
 |};
@@ -22,6 +296,7 @@ type State = {
   phone: string,
   email: string,
   address: string,
+  apt: string,
   neighborhood: string,
   zip: string,
   dogName: string,
@@ -70,8 +345,9 @@ export default class IndexPage extends React.Component {
         firstName: result['firstName'] || '',
         lastName: result['lastName'] || '',
         phone: result['phone'] || '',
-        email: '',
+        email: result['email'] || '',
         address: result['address'] || '',
+        apt: result['apt'] || '',
         neighborhood: result['neighborhood'] || '',
         zip: result['zip'] || '',
         dogName: result['dogName'] || '',
@@ -102,6 +378,7 @@ export default class IndexPage extends React.Component {
         rabiesIssued: '',
         rabiesExpire: '',
         comments: '',
+        apt: '',
       };
     }
   }
@@ -194,7 +471,9 @@ export default class IndexPage extends React.Component {
             </div>
 
             <div className="txt">
-              <label htmlFor="lookup-address" className="txt-l">Address</label>
+              <label htmlFor="lookup-address" className="txt-l">
+                Street Address
+              </label>
               <input
                 id="lookup-address"
                 type="text"
@@ -202,6 +481,34 @@ export default class IndexPage extends React.Component {
                 value={this.state.address}
                 onChange={this.handleInputChange}
                 placeholder="1 City Hall Square"
+                className="txt-f"
+              />
+            </div>
+
+            <div className="txt">
+              <label htmlFor="lookup-apt" className="txt-l">
+                Apt. #
+              </label>
+              <input
+                id="lookup-apt"
+                type="text"
+                name="apt"
+                value={this.state.apt}
+                onChange={this.handleInputChange}
+                placeholder="221B"
+                className="txt-f"
+              />
+            </div>
+
+            <div className="txt">
+              <label htmlFor="lookup-zip" className="txt-l">Zip Code</label>
+              <input
+                id="lookup-zip"
+                type="text"
+                name="zip"
+                value={this.state.zip}
+                onChange={this.handleInputChange}
+                placeholder="02116"
                 className="txt-f"
               />
             </div>
@@ -221,38 +528,25 @@ export default class IndexPage extends React.Component {
                     value={this.state.neighborhood}
                     id="lookup-neighborhood"
                     className="sel-f">
-                    <option value="Allston">Allston</option>
-                    <option value="Back Bay">Back Bay</option>
-                    <option value="Beacon Hill">Beacon Hill</option>
-                    <option value="Boston">Boston</option>
-                    <option value="Brighton">Brighton</option>
-                    <option value="Charleston">Charleston</option>
-                    <option value="Dorchester">Dorchester</option>
-                    <option value="East Boston">East Boston</option>
-                    <option value="Hyde Park">Hyde Park</option>
-                    <option value="Jamaica Plain">Jamaica Plain</option>
-                    <option value="Mattapan">Mattapan</option>
-                    <option value="Readville">Readville</option>
-                    <option value="Roslindale">Roslindale</option>
-                    <option value="Roxbury">Roxbury</option>
-                    <option value="South Boston">South Boston</option>
-                    <option value="West Roxbury">West Roxbury</option>
+                    <option value="ALLSTON">Allston</option>
+                    <option value="BACK BAY">Back Bay</option>
+                    <option value="BEACON HILL">Beacon Hill</option>
+                    <option value="BOSTON">Boston</option>
+                    <option value="BRIGHTON">Brighton</option>
+                    <option value="CHARLESTON">Charleston</option>
+                    <option value="DORCHESTER">Dorchester</option>
+                    <option value="EAST BOSTON">East Boston</option>
+                    <option value="HYDE PARK">Hyde Park</option>
+                    <option value="JAMAICA PLAIN">Jamaica Plain</option>
+                    <option value="MATTAPAN">Mattapan</option>
+                    <option value="READVILLE">Readville</option>
+                    <option value="ROSLINDALE">Roslindale</option>
+                    <option value="ROXBURY">Roxbury</option>
+                    <option value="SOUTH BOSTON">South Boston</option>
+                    <option value="WEST ROXBURY">West Roxbury</option>
                   </select>
                 </div>
               </div>
-            </div>
-
-            <div className="txt">
-              <label htmlFor="lookup-zip" className="txt-l">Zip Code</label>
-              <input
-                id="lookup-zip"
-                type="text"
-                name="zip"
-                value={this.state.zip}
-                onChange={this.handleInputChange}
-                placeholder="02116"
-                className="txt-f"
-              />
             </div>
 
             <div className="txt">
@@ -304,29 +598,7 @@ export default class IndexPage extends React.Component {
                   Primary Breed
                 </label>
                 <div className="sel-c sel-c--fw">
-                  <select
-                    name="breed"
-                    id="lookup-breed"
-                    onChange={this.handleInputChange}
-                    value={this.state.breed}
-                    className="sel-f">
-                    <option value="Alaskan Malamute">Alaskan Malamute</option>
-                    <option value="Alaskan Husky">Alaskan Husky</option>
-                    <option value="Pit Bull Terrier">Pit Bull Terrier</option>
-                    <option value="Bulldog">Bulldog</option>
-                    <option value="Australian Shephard">
-                      Australian Shephard
-                    </option>
-                    <option value="Basset Hound">Basset Hound</option>
-                    <option value="Italian Greyhound">Italian Greyhound</option>
-                    <option value="Otterhound">Otterhound</option>
-                    <option value="Pharoah Hound">Pharoah Hound</option>
-                    <option value="Plott Hound">Plott Hound</option>
-                    <option value="Portuguese Water Dog">
-                      Portuguese Water Dog
-                    </option>
-                    <option value="Whippet">Whippet</option>
-                  </select>
+                  {this.renderBreedSelect()}
                 </div>
               </div>
             </div>
@@ -337,20 +609,7 @@ export default class IndexPage extends React.Component {
                   Primary Color
                 </label>
                 <div className="sel-c sel-c--fw">
-                  <select
-                    name="color"
-                    id="lookup-color"
-                    type="text"
-                    onChange={this.handleInputChange}
-                    value={this.state.color}
-                    className="sel-f">
-                    <option value="Black">Black</option>
-                    <option value="Brown">Brown</option>
-                    <option value="Tan">Tan</option>
-                    <option value="White">White</option>
-                    <option selected value="Red-Brown">Red-Brown</option>
-                    <option value="Grey">Grey</option>
-                  </select>
+                  {this.renderColorSelect()}
                 </div>
               </div>
             </div>
@@ -369,7 +628,7 @@ export default class IndexPage extends React.Component {
                     value={this.state.sex}
                     className="sel-f">
                     <option value="Female">Spayed Female ($15)</option>
-                    <option value="Female">Un=spayed Female ($30)</option>
+                    <option value="Female">Un-spayed Female ($30)</option>
                     <option value="Male">Neutered Male ($15)</option>
                     <option value="Male">Un-neutered Male ($30)</option>
                   </select>
@@ -458,6 +717,46 @@ export default class IndexPage extends React.Component {
           </a>.
         </div>
       </div>
+    );
+  }
+
+  renderColorSelect() {
+    const displayNames = Object.keys(COLORS);
+    displayNames.sort();
+    return (
+      <select
+        name="color"
+        id="lookup-color"
+        type="text"
+        onChange={this.handleInputChange}
+        value={this.state.color}
+        className="sel-f">
+        {displayNames.map(displayName =>
+          <option value={COLORS[displayName]} key={displayName}>
+            {displayName}
+          </option>,
+        )}
+      </select>
+    );
+  }
+
+  renderBreedSelect() {
+    const displayNames = Object.keys(BREEDS);
+    displayNames.sort();
+    return (
+      <select
+        name="breed"
+        id="lookup-breed"
+        type="text"
+        onChange={this.handleInputChange}
+        value={this.state.breed}
+        className="sel-f">
+        {displayNames.map(displayName =>
+          <option value={BREEDS[displayName]} key={displayName}>
+            {displayName}
+          </option>,
+        )}
+      </select>
     );
   }
 

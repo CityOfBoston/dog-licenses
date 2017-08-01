@@ -16,6 +16,8 @@ query SearchDogLicenses($firstName: String!, $lastName: String!, $dogName: Strin
       vacDate
       vacExp
       neighborhood
+      email
+      apt
     }
   }
 }

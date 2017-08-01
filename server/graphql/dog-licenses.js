@@ -11,6 +11,7 @@ type DogLicense {
   lastName: String,
   dogName: String,
   id: String!,
+  email: String,
   personId: String!,
   tagNo: String,
   tagType: String,
@@ -119,6 +120,7 @@ type DogLicense = {
   areaCode: string,
   phone: string,
   address: string,
+  email: string,
 };
 
 function searchResultToDogLicense(
@@ -145,7 +147,8 @@ function searchResultToDogLicense(
     vacDate: res['vac_date'],
     vacTerm: res['vac_term'],
     vacExp: res['vac_exp'],
-    neighborhood: res['jurisdiction'],
+    neighborhood: res['city'],
+    email: res['email_addr'],
     tagIdentity: res['tag_identity'],
     tagTail: res['tag_tail'],
     clerkid: res['clerk_id'],
