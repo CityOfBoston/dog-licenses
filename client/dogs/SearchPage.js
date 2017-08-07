@@ -67,6 +67,7 @@ export default class IndexPage extends React.Component {
                 onChange={this.handleInputChange}
                 placeholder="Emily"
                 className="txt-f"
+                required
               />
             </div>
 
@@ -80,6 +81,7 @@ export default class IndexPage extends React.Component {
                 onChange={this.handleInputChange}
                 placeholder="Elizabeth"
                 className="txt-f"
+                required
               />
             </div>
 
@@ -93,6 +95,7 @@ export default class IndexPage extends React.Component {
                 onChange={this.handleInputChange}
                 placeholder="Clifford"
                 className="txt-f"
+                required
               />
             </div>
 
@@ -106,6 +109,7 @@ export default class IndexPage extends React.Component {
                 onChange={this.handleInputChange}
                 placeholder="2016"
                 className="txt-f"
+                required
               />
             </div>
 
