@@ -406,7 +406,7 @@ export default class IndexPage extends React.Component {
           <title>Boston.gov — Dog Licenses</title>
         </Head>
 
-        <div className="p-a300">
+        <div className="p-a300 b-c">
           <div className="sh sh--b0">
             <h1 className="sh-title">License Your Dog</h1>
           </div>
