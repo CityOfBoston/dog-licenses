@@ -3,6 +3,7 @@
 import React from 'react';
 import Head from 'next/head';
 import Moment from 'moment';
+import Dropzone from 'react-dropzone';
 import type { Context } from 'next';
 import type { ClientDependencies } from '../page';
 import type { DogLicenseSearchResults } from '../types';
@@ -316,6 +317,8 @@ type State = {
   rabiesIssued: string,
   rabiesExpire: string,
   comments: string,
+  rabiesCertFile: ?File,
+  spayingCertFile: ?File,
 };
 
 export default class IndexPage extends React.Component {
@@ -367,6 +370,8 @@ export default class IndexPage extends React.Component {
         rabiesIssued: Moment(result['vacDate']).format('l') || '',
         rabiesExpire: Moment(result['vacExp']).format('l') || '',
         comments: '',
+        rabiesCertFile: null,
+        spayingCertFile: null,
       };
     } else {
       this.state = {
@@ -387,6 +392,8 @@ export default class IndexPage extends React.Component {
         rabiesExpire: '',
         comments: '',
         apt: '',
+        rabiesCertFile: null,
+        spayingCertFile: null,
       };
     }
   }
@@ -400,7 +407,20 @@ export default class IndexPage extends React.Component {
     ev.preventDefault();
   };
 
+  onDropRabies = (files: Array<File>) => {
+    this.setState({
+      rabiesCertFile: files[0],
+    });
+  };
+  onDropSpaying = (files: Array<File>) => {
+    this.setState({
+      spayingCertFile: files[0],
+    });
+  };
+
   render() {
+    const { rabiesCertFile, spayingCertFile } = this.state;
+
     return (
       <div>
         <Head>
@@ -649,6 +669,56 @@ export default class IndexPage extends React.Component {
                 placeholder="3/31/2017"
                 className="txt-f"
               />
+            </div>
+
+            <div className="txt">
+              <label htmlFor="lookup-rabiesCert" className="txt-l">
+                Rabies Certificate
+              </label>
+              <Dropzone
+                disableClick={false}
+                multiple={false}
+                accept={'image/*'}
+                onDrop={this.onDropRabies}
+                id={'lookup-rabiesCert'}>
+                <div>
+                  {'Drop a photo, or click to add.'}
+                </div>
+              </Dropzone>
+              {rabiesCertFile &&
+                <aside>
+                  <h2>Dropped files</h2>
+                  <ul>
+                    <li>
+                      {rabiesCertFile.name} - {rabiesCertFile.size} bytes
+                    </li>
+                  </ul>
+                </aside>}
+            </div>
+
+            <div className="txt">
+              <label htmlFor="lookup-spayingCert" className="txt-l">
+                Spaying Certificate
+              </label>
+              <Dropzone
+                disableClick={false}
+                multiple={false}
+                accept={'image/*'}
+                onDrop={this.onDropSpaying}
+                id={'lookup-spayingCert'}>
+                <div>
+                  {'Drop a photo, or click to add.'}
+                </div>
+              </Dropzone>
+              {spayingCertFile &&
+                <aside>
+                  <h2>Dropped files</h2>
+                  <ul>
+                    <li>
+                      {spayingCertFile.name} - {spayingCertFile.size} bytes
+                    </li>
+                  </ul>
+                </aside>}
             </div>
 
             <div className="txt">
