@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Head from 'next/head';
+import Moment from 'moment';
 import type { Context } from 'next';
 import type { ClientDependencies } from '../page';
 import type { DogLicenseSearchResults } from '../types';
@@ -363,8 +364,8 @@ export default class IndexPage extends React.Component {
         color: result['priColor'] || '',
         breed: result['priBreed'] || '',
         sex: result['sex'] || '',
-        rabiesIssued: result['vacDate'] || '',
-        rabiesExpire: result['vacExp'] || '',
+        rabiesIssued: Moment(result['vacDate']).format('l') || '',
+        rabiesExpire: Moment(result['vacExp']).format('l') || '',
         comments: '',
       };
     } else {
@@ -406,7 +407,7 @@ export default class IndexPage extends React.Component {
           <title>Boston.gov — Dog Licenses</title>
         </Head>
 
-        <div className="p-a300">
+        <div className="p-a300 b-c">
           <div className="sh sh--b0">
             <h1 className="sh-title">License Your Dog</h1>
           </div>
@@ -630,7 +631,7 @@ export default class IndexPage extends React.Component {
                 name="rabiesIssued"
                 value={this.state.rabiesIssued}
                 onChange={this.handleInputChange}
-                placeholder="02/18/2014"
+                placeholder="2/18/2014"
                 className="txt-f"
               />
             </div>
@@ -645,7 +646,7 @@ export default class IndexPage extends React.Component {
                 name="rabiesExpire"
                 value={this.state.rabiesExpire}
                 onChange={this.handleInputChange}
-                placeholder="03/31/2017"
+                placeholder="3/31/2017"
                 className="txt-f"
               />
             </div>
