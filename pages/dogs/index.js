@@ -1,6 +1,6 @@
 // @flow
 
 import page from '../../client/page';
-import SearchPage from '../../client/dogs/SearchPage';
+import TitlePage from '../../client/dogs/TitlePage';
 
-export default page(SearchPage);
+export default page(TitlePage);
