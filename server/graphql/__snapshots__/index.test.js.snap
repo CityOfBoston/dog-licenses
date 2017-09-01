@@ -55,7 +55,7 @@ GraphQLSchema {
     },
   ],
   "_implementations": Object {},
-  "_mutationType": null,
+  "_mutationType": "Mutation",
   "_queryType": "Query",
   "_subscriptionType": null,
   "_typeMap": Object {
@@ -63,6 +63,7 @@ GraphQLSchema {
     "DogLicense": "DogLicense",
     "DogLicenses": "DogLicenses",
     "Int": "Int",
+    "Mutation": "Mutation",
     "Query": "Query",
     "String": "String",
     "__Directive": "__Directive",

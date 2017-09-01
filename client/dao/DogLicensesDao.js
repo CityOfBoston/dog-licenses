@@ -4,7 +4,10 @@ import type { LoopbackGraphql } from '../loopback-graphql';
 import type { DogLicense } from '../types';
 
 import searchDogLicenses from '../queries/search-dog-licenses';
+import createDogLicenses from '../queries/create-dog-licenses';
 import type { DogLicenseSearchResults } from '../types';
+import type { DogLicenseCreateMutationVariables } from '../queries/graphql-types';
+import type { DogLicenseCreateResults } from '../types';
 
 export type DogLicenseCache = { [id: string]: DogLicense };
 
@@ -14,6 +17,7 @@ export default class DogLicensesDao {
   constructor(loopbackGraphql: LoopbackGraphql) {
     this.loopbackGraphql = loopbackGraphql;
   }
+
   async search(
     firstName: string,
     lastName: string,
@@ -57,5 +61,11 @@ export default class DogLicensesDao {
       startYear,
       endYear,
     };
+  }
+
+  async create(
+    licenseParams: DogLicenseCreateMutationVariables,
+  ): Promise<DogLicenseCreateResults> {
+    return createDogLicenses(this.loopbackGraphql, licenseParams);
   }
 }
