@@ -1,6 +1,32 @@
 /* @flow */
 //  This file was automatically generated and should not be edited.
 
+export type DogLicenseCreateMutationVariables = {|
+  address: string,
+  ageMonths: string,
+  ageYears: string,
+  apt: string,
+  breed: string,
+  color: string,
+  comments: string,
+  dogName: string,
+  email: string,
+  firstName: string,
+  lastName: string,
+  neighborhood: string,
+  phone: string,
+  rabiesExpire: string,
+  rabiesIssued: string,
+  sex: string,
+  zip: string,
+|};
+
+export type DogLicenseCreateMutation = {|
+  dogLicenseCreate: {|
+    firstName: ?string,
+  |},
+|};
+
 export type SearchDogLicensesQueryVariables = {|
   firstName: string,
   lastName: string,

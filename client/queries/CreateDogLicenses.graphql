@@ -1,0 +1,42 @@
+mutation DogLicenseCreate(
+  $address: String!,
+  $ageMonths: String!,
+  $ageYears: String!,
+  $apt: String!,
+  $breed: String!,
+  $color: String!,
+  $comments: String!,
+  $dogName: String!,
+  $email: String!,
+  $firstName: String!,
+  $lastName: String!,
+  $neighborhood: String!,
+  $phone: String!,
+  $rabiesExpire: String!,
+  $rabiesIssued: String!,
+  $sex: String!,
+  $zip: String!,
+) {
+  dogLicenseCreate (
+    address: $address,
+    ageMonths: $ageMonths,
+    ageYears: $ageYears,
+    apt: $apt,
+    breed: $breed,
+    color: $color,
+    comments: $comments,
+    dogName: $dogName,
+    email: $email,
+    firstName: $firstName,
+    lastName: $lastName,
+    neighborhood: $neighborhood,
+    phone: $phone,
+    rabiesExpire: $rabiesExpire,
+    rabiesIssued: $rabiesIssued,
+    sex: $sex,
+    zip: $zip,
+  )
+  {
+    firstName
+  }
+}

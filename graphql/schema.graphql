@@ -51,6 +51,10 @@ type DogLicenses {
   licenses(ids: [String!]!): [DogLicense]!
 }
 
+type Mutation {
+  dogLicenseCreate(address: String, ageMonths: String, ageYears: String, apt: String, breed: String, color: String, comments: String, dogName: String, email: String, firstName: String!, lastName: String!, neighborhood: String, phone: String, rabiesExpire: String, rabiesIssued: String, sex: String, zip: String): DogLicense!
+}
+
 type Query {
   dogLicenses: DogLicenses!
 }
